@@ -53,38 +53,33 @@ public class Datastore {
    *     message. List is sorted by time descending.
    */
   public List<Message> getMessages(String user) {
-    List<Message> messages = new ArrayList<>();
-
-    Query query =
-    new Query("Message")
-    .setFilter(new Query.FilterPredicate("user", FilterOperator.EQUAL, user))
-    .addSort("timestamp", SortDirection.DESCENDING);
-    PreparedQuery results = datastore.prepare(query);
-
-    for (Entity entity : results.asIterable()) {
-      try {
-        String idString = entity.getKey().getName();
-        UUID id = UUID.fromString(idString);
-        String text = (String) entity.getProperty("text");
-        long timestamp = (long) entity.getProperty("timestamp");
-
-        Message message = new Message(id, user, text, timestamp);
-        messages.add(message);
-      } catch (Exception e) {
-        System.err.println("Error reading message.");
-        System.err.println(entity.toString());
-        e.printStackTrace();
-      }
-    }
-
-    return messages;
+    return messageGet(user);
   }
 
   public List<Message> getAllMessages(){
+    return messageGet(null);
+  }
+
+  /**
+   * Repeated code from getMessages and getAllMessages.
+   *
+   * @return a list of messages posted by the user, or empty list if user has never posted a
+   *     message. List is sorted by time descending.
+   */
+  public List<Message> messageGet(String user) {
     List<Message> messages = new ArrayList<>();
 
-    Query query = new Query("Message")
-    .addSort("timestamp", SortDirection.DESCENDING);
+    Query query;
+    if (user == null) {
+      query = new Query("Message")
+      .addSort("timestamp", SortDirection.DESCENDING);
+    } else {
+      query =
+      new Query("Message")
+      .setFilter(new Query.FilterPredicate("user", FilterOperator.EQUAL, user))
+      .addSort("timestamp", SortDirection.DESCENDING);
+    }
+
     PreparedQuery results = datastore.prepare(query);
 
     for (Entity entity : results.asIterable()) {
@@ -106,4 +101,7 @@ public class Datastore {
 
     return messages;
   }
+
+
+
 }
