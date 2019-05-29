@@ -19,11 +19,12 @@ public class UserListServlet extends HttpServlet {
   @Override
   public void init() {
      datastore = new Datastore();
-   }
+  }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response)
       throws IOException {
       Set<String> users = datastore.getUsers();
+      System.out.println(users);
   }
 }
