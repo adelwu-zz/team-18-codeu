@@ -81,7 +81,8 @@ public class Datastore {
 
     return messages;
   }
-    public Set<String> getUsers(){
+
+  public Set<String> getUsers(){
     Set<String> users = new HashSet<>();
     Query query = new Query("Message");
     PreparedQuery results = datastore.prepare(query);
