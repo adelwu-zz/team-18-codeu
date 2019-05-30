@@ -1,19 +1,22 @@
 package com.google.codeu.servlets;
 
 import java.io.IOException;
-
+import com.google.gson.Gson;
 import com.google.codeu.data.Datastore;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Set;
 import java.util.HashSet;
+
 /**
  * Handles fetching all users for the community page.
  */
 @WebServlet("/user-list")
 public class UserListServlet extends HttpServlet {
+
   private Datastore datastore;
 
   @Override
@@ -24,7 +27,10 @@ public class UserListServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response)
       throws IOException {
-      Set<String> users = datastore.getUsers();
-      System.out.println(users);
+     response.setContentType("application/json");
+     Set<String> users = datastore.getUsers();
+     Gson gson = new Gson();
+     String json = gson.toJson(users);
+     response.getOutputStream().println(json);
   }
 }
