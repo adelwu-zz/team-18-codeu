@@ -56,8 +56,26 @@ public class MessageServlet extends HttpServlet {
       response.getWriter().println("[]");
       return;
     }
-
+    
+    //list of Message objects which were newly created
+    
     List<Message> messages = datastore.getMessages(user);
+    
+    //add images for each Message 
+    
+    for (Message msg : messages) {
+    	String userText = msg.getText();
+    	userText = Jsoup.clean(userText, Whitelist.none());
+    	
+    	String regex = "(https?://\\S+\\.(png|jpg|gif))";
+    	String replacement = "<img src=\"$1\" />";
+    	String textWithImagesReplaced = userText.replaceAll(regex, replacement);
+    	
+    	//set message text 
+    	
+    	msg.setText(textWithImagesReplaced);
+    }
+    
     Gson gson = new Gson();
     String json = gson.toJson(messages);
 
@@ -74,22 +92,11 @@ public class MessageServlet extends HttpServlet {
     }
 
     String user = userService.getCurrentUser().getEmail();
-/*  
     String text = Jsoup.clean(request.getParameter("text"), Whitelist.none());
+
     Message message = new Message(user, text);
     datastore.storeMessage(message);
-*/
-    String userText = Jsoup.clean(request.getParameter("text"), Whitelist.none());
-    
-    String regex = "(https?://\\S+\\.(png|jpg|gif))";
-    String replacement = "<img src=\"$1\" />";
-    String textWithImagesReplaced = userText.replaceAll(regex, replacement);
 
-    
-        
-    Message message = new Message(user, textWithImagesReplaced);
-    datastore.storeMessage(message);
-    
     response.sendRedirect("/user-page.html?user=" + user);
   }
 }
