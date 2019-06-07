@@ -1,5 +1,6 @@
 package com.google.codeu.render;
 
+import com.google.codeu.data.Message;
 import java.util.List;
 
 /**
@@ -9,17 +10,17 @@ import java.util.List;
  */
 public class SequentialMessageTransformer implements MessageTransformer {
 
-  private List<MessageTransformer> delegateMessageTransformers;
+  private List<MessageTransformer> delegates;
 
-  public SequentialMessageTransformer(List<MessageTransformer> delegateMessageTransformers) {
-    this.delegateMessageTransformers = delegateMessageTransformers;
+  public SequentialMessageTransformer(List<MessageTransformer> delegates) {
+    this.delegates = delegates;
   }
 
   @Override
-  public String transformText(String text) {
-    for (MessageTransformer messageTransformer : delegateMessageTransformers) {
-      text = messageTransformer.transformText(text);
+  public Message transform(Message message) {
+    for (MessageTransformer delegate : delegates) {
+      message = delegate.transform(message);
     }
-    return text;
+    return message;
   }
 }

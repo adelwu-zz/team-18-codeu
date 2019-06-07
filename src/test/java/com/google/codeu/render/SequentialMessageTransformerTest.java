@@ -2,6 +2,7 @@ package com.google.codeu.render;
 
 import static org.junit.Assert.assertEquals;
 
+import com.google.codeu.data.Message;
 import java.util.Arrays;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -14,20 +15,26 @@ public class SequentialMessageTransformerTest {
     // Constructs the class under test.
     MessageTransformer messageTransformer = new SequentialMessageTransformer(Arrays.asList());
 
-    assertEquals("some input", messageTransformer.transformText("some input"));
+    Message message0 = new Message("user0", "an input text");
+
+    assertEquals(message0, messageTransformer.transform(message0));
   }
 
   @Test
   /** Tests when there is exactly one delegate, its output is returned. */
   public void testTransformTextOneDelegate() {
     MessageTransformer mockDelegate = Mockito.mock(MessageTransformer.class);
-    Mockito.when(mockDelegate.transformText("input text")).thenReturn("some mock output");
+
+    Message message0 = new Message("user0", "an input text");
+    Message message1 = new Message("user1", "mock output 1");
+
+    Mockito.when(mockDelegate.transform(message0)).thenReturn(message1);
 
     // Constructs the class under test.
     MessageTransformer messageTransformer =
         new SequentialMessageTransformer(Arrays.asList(mockDelegate));
 
-    assertEquals("some mock output", messageTransformer.transformText("input text"));
+    assertEquals(message1, messageTransformer.transform(message0));
   }
 
   @Test
@@ -37,15 +44,20 @@ public class SequentialMessageTransformerTest {
     MessageTransformer mockDelegate2 = Mockito.mock(MessageTransformer.class);
     MessageTransformer mockDelegate3 = Mockito.mock(MessageTransformer.class);
 
-    Mockito.when(mockDelegate1.transformText("an input text")).thenReturn("mock output 1");
-    Mockito.when(mockDelegate2.transformText("mock output 1")).thenReturn("mock output 2");
-    Mockito.when(mockDelegate3.transformText("mock output 2")).thenReturn("mock output 3");
+    Message message0 = new Message("user0", "an input text");
+    Message message1 = new Message("user1", "mock output 1");
+    Message message2 = new Message("user2", "mock output 2");
+    Message message3 = new Message("user3", "mock output 3");
+
+    Mockito.when(mockDelegate1.transform(message0)).thenReturn(message1);
+    Mockito.when(mockDelegate2.transform(message1)).thenReturn(message2);
+    Mockito.when(mockDelegate3.transform(message2)).thenReturn(message3);
 
     // Constructs the class under test.
     MessageTransformer messageTransformer =
         new SequentialMessageTransformer(
             Arrays.asList(mockDelegate1, mockDelegate2, mockDelegate3));
 
-    assertEquals("mock output 3", messageTransformer.transformText("an input text"));
+    assertEquals(message3, messageTransformer.transform(message0));
   }
 }
