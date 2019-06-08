@@ -22,6 +22,7 @@ import com.google.codeu.data.Datastore;
 import com.google.codeu.data.Message;
 import com.google.codeu.render.JSoupCleanMessageTransformer;
 import com.google.codeu.render.MessageTransformer;
+import com.google.codeu.render.ReplaceImageURLMessageTransformer;
 import com.google.codeu.render.SequentialMessageTransformer;
 import com.google.gson.Gson;
 import java.io.IOException;
@@ -44,7 +45,8 @@ public class MessageServlet extends HttpServlet {
   public void init() {
     datastore = new Datastore();
     messageTransformer =
-        new SequentialMessageTransformer(Arrays.asList(new JSoupCleanMessageTransformer()));
+        new SequentialMessageTransformer(Arrays.asList(new JSoupCleanMessageTransformer(), 
+        new ReplaceImageURLMessageTransformer()));
   }
 
   /**
