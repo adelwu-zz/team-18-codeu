@@ -20,25 +20,28 @@ import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.codeu.data.Datastore;
 import com.google.codeu.data.Message;
+import com.google.codeu.render.JSoupCleanMessageTransformer;
+import com.google.codeu.render.MessageTransformer;
 import com.google.gson.Gson;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.jsoup.Jsoup;
-import org.jsoup.safety.Whitelist;
 
 /** Handles fetching and saving {@link Message} instances. */
 @WebServlet("/messages")
 public class MessageServlet extends HttpServlet {
 
   private Datastore datastore;
+  private MessageTransformer messageTransformer;
 
   @Override
   public void init() {
     datastore = new Datastore();
+    messageTransformer = new JSoupCleanMessageTransformer();
   }
 
   /**
@@ -56,28 +59,14 @@ public class MessageServlet extends HttpServlet {
       response.getWriter().println("[]");
       return;
     }
-    
-    //list of Message objects which were newly created
-    
+
     List<Message> messages = datastore.getMessages(user);
-    
-    //add images for each Message 
-    
-    for (Message msg : messages) {
-    	String userText = msg.getText();
-    	userText = Jsoup.clean(userText, Whitelist.none());
-    	
-    	String regex = "(https?://\\S+\\.(png|jpg|gif))";
-    	String replacement = "<img src=\"$1\" />";
-    	String textWithImagesReplaced = userText.replaceAll(regex, replacement);
-    	
-    	//set message text 
-    	
-    	msg.setText(textWithImagesReplaced);
+    List<Message> transformedMessages = new ArrayList<>();
+    for (Message message : messages) {
+      transformedMessages.add(messageTransformer.transform(message));
     }
-    
     Gson gson = new Gson();
-    String json = gson.toJson(messages);
+    String json = gson.toJson(transformedMessages);
 
     response.getWriter().println(json);
   }
@@ -92,7 +81,7 @@ public class MessageServlet extends HttpServlet {
     }
 
     String user = userService.getCurrentUser().getEmail();
-    String text = Jsoup.clean(request.getParameter("text"), Whitelist.none());
+    String text = request.getParameter("text");
 
     Message message = new Message(user, text);
     datastore.storeMessage(message);
