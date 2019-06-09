@@ -52,7 +52,7 @@ function fetchMessages() {
   const url = '/messages?user=' + parameterUsername;
   fetch(url)
       .then((response) => {
-        return response.json(); 
+        return response.json();
       })
       .then((messages) => {
         const messagesContainer = document.getElementById('message-container');
@@ -99,7 +99,7 @@ function buildUI() {
   fetchAboutMe();
   const config = {removePlugins: [ 'ImageUpload' , 'blockQuote'],
                   toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList' ]};
-  ClassicEditor.create(document.getElementById('message-input'), config );
+  ClassicEditor.create(document.getElementById('message-input'), config);
 }
 
 /**

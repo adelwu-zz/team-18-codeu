@@ -61,7 +61,7 @@ public class MessageServlet extends HttpServlet {
     Gson gson = new Gson();
     String json = gson.toJson(messages);
 
-    response.getWriter().println(json); 
+    response.getWriter().println(json);
   }
 
   /** Stores a new {@link Message}. */
