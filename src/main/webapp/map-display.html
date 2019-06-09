@@ -6,10 +6,25 @@
     <script>
       function createMap(){
         const map  = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 38.897, lng: -77.036},
+          center: {lat: 38.89, lng: -77.048},
           zoom: 16
         });
+
+        addLandmark(map, 38.89, -77.05, 'The Lincoln Memorial', 'This memorial of Lincoln is one of the most iconic monuments in D.C.')
       }
+    function addLandmark(map, lat, lng, title, description){
+      const marker = new google.maps.Marker({
+        position: {lat: lat, lng: lng},
+        map : map,
+        title: title
+      });
+      const infoWindow = new google.maps.InfoWindow({
+        content: description
+      });
+      marker.addListener('click', function(){
+        infoWindow.open(map, marker)
+      });
+    }
     </script>
     <style>
       #map{
