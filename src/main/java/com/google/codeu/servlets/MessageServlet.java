@@ -20,25 +20,31 @@ import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.codeu.data.Datastore;
 import com.google.codeu.data.Message;
+import com.google.codeu.render.JSoupCleanMessageTransformer;
+import com.google.codeu.render.MessageTransformer;
+import com.google.codeu.render.SequentialMessageTransformer;
 import com.google.gson.Gson;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.jsoup.Jsoup;
-import org.jsoup.safety.Whitelist;
 
 /** Handles fetching and saving {@link Message} instances. */
 @WebServlet("/messages")
 public class MessageServlet extends HttpServlet {
 
   private Datastore datastore;
+  private MessageTransformer messageTransformer;
 
   @Override
   public void init() {
     datastore = new Datastore();
+    messageTransformer =
+        new SequentialMessageTransformer(Arrays.asList(new JSoupCleanMessageTransformer()));
   }
 
   /**
@@ -58,8 +64,12 @@ public class MessageServlet extends HttpServlet {
     }
 
     List<Message> messages = datastore.getMessages(user);
+    List<Message> transformedMessages = new ArrayList<>();
+    for (Message message : messages) {
+      transformedMessages.add(messageTransformer.transform(message));
+    }
     Gson gson = new Gson();
-    String json = gson.toJson(messages);
+    String json = gson.toJson(transformedMessages);
 
     response.getWriter().println(json);
   }
@@ -74,7 +84,11 @@ public class MessageServlet extends HttpServlet {
     }
 
     String user = userService.getCurrentUser().getEmail();
+<<<<<<< HEAD
     String text = Jsoup.clean(request.getParameter("text"), Whitelist.relaxed());
+=======
+    String text = request.getParameter("text");
+>>>>>>> 9901f23991fc7478f1c1191c72aa0b627ed6f72e
 
     Message message = new Message(user, text);
     datastore.storeMessage(message);
