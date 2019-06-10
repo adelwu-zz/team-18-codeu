@@ -56,8 +56,4 @@ public class Message {
   public long getTimestamp() {
     return timestamp;
   }
-  
-  public void setText(String text) {
-	  this.text = text;
-  }
 }
