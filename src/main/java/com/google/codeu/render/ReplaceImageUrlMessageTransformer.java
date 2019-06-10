@@ -3,7 +3,7 @@ package com.google.codeu.render;
 import com.google.codeu.data.Message;
 
 /** Replaces image URLs with HTML image elements. */
-public class ReplaceImageURLMessageTransformer implements MessageTransformer{
+public class ReplaceImageUrlMessageTransformer implements MessageTransformer{
 
 	@Override
 	public Message transform(Message message) {
