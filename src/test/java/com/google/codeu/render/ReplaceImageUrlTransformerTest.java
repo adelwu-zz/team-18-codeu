@@ -30,14 +30,17 @@ public class ReplaceImageUrlTransformerTest {
 
 	    runTransformTextTest(messageTransformer, "", "");
 	    runTransformTextTest(messageTransformer, "Test message!", "Test message!");
-	    runTransformTextTest(messageTransformer, "Test <b>message</b>!", "Test <b>message</b>!");
-	/*    runTransformTextTest(
+	    runTransformTextTest(messageTransformer, "Test http://tineye.com/images/widgets/mona.jpg", 
+	    		"Test <img src=\"http://tineye.com/images/widgets/mona.jpg\" />");
+	   runTransformTextTest(
 	        messageTransformer,
-	        "Test <b>message</b>! With <i>multiple</i> html tags",
-	        "Test <b>message</b>! With <i>multiple</i> html tags");
-	    runTransformTextTest(
+	        "Test https://www.gstatic.com/webp/gallery3/1.png With https and .png file",
+	        "Test <img src=\"https://www.gstatic.com/webp/gallery3/1.png\" /> With https and .png file");
+	      runTransformTextTest(
 	        messageTransformer,
-	        "Test <b>message</b>! And <script>doSomeBadStuff();</script>?",
-	        "Test <b>message</b>! And ?");
-	  */}
+	        "Test https://www.gstatic.com/webp/gallery/4.sm.jpg a jpg file and gif file"
+	        + " And http://evananthony.com/myFiles/gifs/demo_reel_2013_1280x720.gif",
+	        "Test <img src=\"https://www.gstatic.com/webp/gallery/4.sm.jpg\" /> a jpg file and gif file "
+	        + "And <img src=\"http://evananthony.com/myFiles/gifs/demo_reel_2013_1280x720.gif\" />");
+	  }
 }
