@@ -97,6 +97,9 @@ function buildUI() {
   showMessageFormIfViewingSelf();
   fetchMessages();
   fetchAboutMe();
+  const config = {removePlugins: [ 'ImageUpload' , 'blockQuote'],
+                  toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList' ]};
+  ClassicEditor.create(document.getElementById('message-input'), config);
 }
 
 /**
