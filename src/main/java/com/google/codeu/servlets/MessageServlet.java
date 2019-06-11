@@ -44,8 +44,10 @@ public class MessageServlet extends HttpServlet {
   @Override
   public void init() {
     datastore = new Datastore();
-    messageTransformer = new SequentialMessageTransformer(
-        Arrays.asList(new JSoupCleanMessageTransformer(), new ReplaceImageUrlMessageTransformer()));
+    messageTransformer =
+        new SequentialMessageTransformer(
+            Arrays.asList(
+                new JSoupCleanMessageTransformer(), new ReplaceImageUrlMessageTransformer()));
   }
 
   /**

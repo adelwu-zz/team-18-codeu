@@ -13,7 +13,7 @@ public class ReplaceImageUrlMessageTransformer implements MessageTransformer {
     String replacement = "<img src=\"$1\" />";
     String textWithImagesReplaced = userText.replaceAll(regex, replacement);
 
-    return new Message(message.getId(), message.getUser(), textWithImagesReplaced,
-        message.getTimestamp());
+    return new Message(
+        message.getId(), message.getUser(), textWithImagesReplaced, message.getTimestamp());
   }
 }
