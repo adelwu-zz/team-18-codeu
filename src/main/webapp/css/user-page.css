@@ -40,6 +40,19 @@
   margin: 5px;
 }
 
+/* Format the images to a smaller width add space
+   between the image and text. */
+.message-body img {
+  display: block;
+  margin-top: 25px;
+  max-width: 75%;
+
+  border: 1px solid #ddd; 
+  border-radius: 10px;   /*rounder edges */
+  padding: 5px;
+  width: 200px;
+}
+
 /* Use this to hide certain elements like forms if the
    user is not logged in or viewing their own page. */
 .hidden {
