@@ -75,14 +75,16 @@ public class MessageServlet extends HttpServlet {
     for (Message message : messages) {
       Message temp = messageTransformer.transform(message);
       String userText = temp.getText();
-      
+
       // Append sentiment score.
       StringBuilder stringBuilder = new StringBuilder(userText);
-      stringBuilder.append("\n" + "Your message sentiment score: " + reviewSentimenter.getSentimentScore(message));
+      stringBuilder.append(
+          "\n" + "Your message sentiment score: " + reviewSentimenter.getSentimentScore(message));
       String textWithSentimentScore = stringBuilder.toString();
 
-      transformedMessages.add(new Message(
-          message.getId(), message.getUser(), textWithSentimentScore, message.getTimestamp()));
+      transformedMessages.add(
+          new Message(
+              message.getId(), message.getUser(), textWithSentimentScore, message.getTimestamp()));
     }
     Gson gson = new Gson();
     String json = gson.toJson(transformedMessages);

@@ -7,5 +7,5 @@ import com.google.codeu.data.Message;
 public interface ReviewSentimenter {
 
   /** Returns a review sentiment score. */
-  public float getSentimentScore (Message message) throws IOException;
+  public float getSentimentScore(Message message) throws IOException;
 }
