@@ -18,9 +18,11 @@ import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.codeu.data.Datastore;
 import com.google.codeu.data.Message;
+import com.google.codeu.render.BasicSentimenter;
 import com.google.codeu.render.JSoupCleanMessageTransformer;
 import com.google.codeu.render.MessageTransformer;
 import com.google.codeu.render.ReplaceImageUrlMessageTransformer;
+import com.google.codeu.render.ReviewSentimenter;
 import com.google.codeu.render.SequentialMessageTransformer;
 import com.google.gson.Gson;
 import java.io.IOException;
@@ -40,6 +42,7 @@ public class MessageServlet extends HttpServlet {
 
   private Datastore datastore;
   private MessageTransformer messageTransformer;
+  private ReviewSentimenter reviewSentimenter;
 
   @Override
   public void init() {
@@ -48,6 +51,7 @@ public class MessageServlet extends HttpServlet {
         new SequentialMessageTransformer(
             Arrays.asList(
                 new JSoupCleanMessageTransformer(), new ReplaceImageUrlMessageTransformer()));
+    reviewSentimenter = new BasicSentimenter();
   }
 
   /**
@@ -69,7 +73,16 @@ public class MessageServlet extends HttpServlet {
     List<Message> messages = datastore.getMessages(user);
     List<Message> transformedMessages = new ArrayList<>();
     for (Message message : messages) {
-      transformedMessages.add(messageTransformer.transform(message));
+      Message temp = messageTransformer.transform(message);
+      String userText = temp.getText();
+      
+      // Append sentiment score.
+      StringBuilder stringBuilder = new StringBuilder(userText);
+      stringBuilder.append("\n" + "Your message sentiment score: " + reviewSentimenter.getSentimentScore(message));
+      String textWithSentimentScore = stringBuilder.toString();
+
+      transformedMessages.add(new Message(
+          message.getId(), message.getUser(), textWithSentimentScore, message.getTimestamp()));
     }
     Gson gson = new Gson();
     String json = gson.toJson(transformedMessages);
