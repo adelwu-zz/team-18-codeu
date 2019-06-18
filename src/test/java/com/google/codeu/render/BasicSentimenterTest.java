@@ -8,7 +8,7 @@ import org.junit.Test;
 public class BasicSentimenterTest {
   /**
    * Tests that Sentimenter works for a particular input.
-   * True means score is positive or > 0. False means score is negative.
+   * True means score is positive or = 0. False means score is negative.
    * @throws IOException
    */
   private void runReviewSentimenterTest(
