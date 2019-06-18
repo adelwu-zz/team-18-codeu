@@ -58,8 +58,18 @@
    fetchMessages();
   }
 </script>
+<script src="/js/navigation-loader.js"></script>
 </head>
-<body onload="buildUI()">
+<body onload="buildUI(); addLoginOrLogoutLinkToNavigation();">
+  <header>
+      <nav>
+        <ul id="navigation">
+          <li><a href="/">Home</a></li>
+          <li><a href="/aboutus.html">Our Team</a></li>
+          <li><a href="/feed.html">Feed</a></li>
+        </ul>
+      </nav>
+  </header>
  <div id="content">
   <h1>Message Feed</h1>
   <hr/>

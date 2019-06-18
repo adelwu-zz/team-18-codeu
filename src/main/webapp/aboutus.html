@@ -20,33 +20,55 @@ limitations under the License.
     <meta charset="UTF-8">
     <title>About Us</title>
     <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/navigation-loader.js"></script>
   </head>
-  </body>
-    <nav>
-      <ul id="navigation">
-        <li><a href="/">Home</a></li>
-        <li><a href="/aboutus.html">About Our Team</a></li>
-        <li><a href="/feed.html">Public Feed</a></li>
-      </ul>
-    </nav>
+  <body onload="addLoginOrLogoutLinkToNavigation();">
+    <header>
+      <nav>
+        <ul id="navigation">
+          <li><a href="/">Home</a></li>
+          <li><a href="/aboutus.html">Our Team</a></li>
+          <li><a href="/feed.html">Feed</a></li>
+        </ul>
+      </nav>
+    </header>
     <h1>About Our Team</h1>
-    <h2>Adel Wu</h2>
-    <ul>
-      <li>Summer Feelz: Enthusiastic, Perpetually Tired, Chill</li>
-      <li>Aspirational Hobby: I'd want to try throwing pottery or gastronomy!</li>
-      <li>Ask me About: importance of diversity in CS or imposter syndrome; dance, art, or kpop!</li>
-    </ul>
-    <h2>Kingsley Neequaye</h2>
-    <ul>
-      <li>Summer Feelz: Good vibes, Sleepy, Excited</li>
-      <li>Aspirational Hobby: Cooking</li>
-      <li>Ask me About: Soccer, Startups, and Reading</li>
-    </ul>
-    <h2>Iram Sharieff</h2>
-    <ul>
-      <li>Summer Feelz: Warmth, Joy, Liberation</li>
-      <li>Aspirational Hobby: I would want to master archery or calligraphy</li>
-      <li>Ask me About: Women's inclusivity in traditionally male spaces, Islam/American Muslims, Comedy TV shows (esp Brooklyn Nine Nine), or modern rock music!</li>
-    </ul>
+
+
+    <div class="profile-container">
+      <div class="p profile1">
+        <h2>Adel Wu </h2>
+        <h3>(UPenn '21)</h3>
+        <img class="img-circle" src="https://scontent-lax3-2.xx.fbcdn.net/v/t1.0-9/48266623_1213149645505576_5769737754095124480_n.jpg?_nc_cat=101&_nc_oc=AQktuDbMLSjOc5sPMrSTSNy2iQ_R6tUv9DwPrsOshqscgassdSZnJsh4OTfk8ajcnyw&_nc_ht=scontent-lax3-2.xx&oh=8511c6efdf009b71db751c512d772914&oe=5D85525E" alt="Adel Profile" style=width:200px;>
+        <ul id="description">
+          <li> <b> Summer Mood </b> <br> Enthusiastic, Perpetually Tired, Chill</li> <br>
+          <li> <b> Aspirational Hobby </b> <br> I'd want to try throwing pottery or photography.</li> <br>
+          <li> <b> Ask me! </b> <br> Importance of diversity in CS or imposter syndrome; dance, art, or K-pop!</li>
+        </ul>
+      </div>
+
+      <div class="p profile2">
+        <h2>Kingsley Neequaye</h2>
+        <h3>(Columbia '21)</h3>
+        <img class="img-circle" src="https://scontent-lax3-2.xx.fbcdn.net/v/t1.0-9/44431616_1041586839357365_9149291616299646976_o.jpg?_nc_cat=104&_nc_oc=AQkvZj95tT51mjKKOfwPALL0VqNSg_PdNB8ZiQgbigw5DsWVisUPdn1h-OosYSOSG2Q&_nc_ht=scontent-lax3-2.xx&oh=b2cc6242083746f5bcec9a9d70dd8612&oe=5D901354" alt="Kingsley Profile" style=width:200px;>
+        <ul id="description">
+          <li> <b> Summer Mood </b> <br> Good vibes, Sleepy, Excited</li> <br>
+          <li> <b> Aspirational Hobby </b> <br> Cooking</li> <br>
+          <li> <b> Ask me! </b> <br> Soccer, Startups, and Reading</li>
+        </ul>
+      </div>
+
+      <div class="p profile3">
+        <h2>Iram Sharieff</h2>
+        <h3>(Yale '21)</h3>
+        <img class="img-circle" src="https://scontent-lax3-2.xx.fbcdn.net/v/t1.0-9/56470452_2057639284334198_8972826674420776960_o.jpg?_nc_cat=105&_nc_oc=AQnPIhgYRiPQ-KSOGIIZvF8W_Oq9SL9LjjjI8M5XXgWl3Ll74t0heSZC_2PAi3GSpdw&_nc_ht=scontent-lax3-2.xx&oh=dce65ab0fcf79f75589bf2e89bbfc1f5&oe=5D7F7428" alt="Iram Profile" style=width:200px;>
+        <ul id="description">
+          <li> <b> Summer Mood </b> <br> Warmth, Joy, Liberation</li> <br>
+          <li> <b> Aspirational Hobby </b> <br> I would want to master archery or calligraphy.</li> <br>
+          <li> <b> Ask me! </b> <br> Women's inclusivity in traditionally male spaces, Islam/American Muslims, Comedy TV shows (esp Brooklyn Nine Nine), or modern rock music!</li> <br>
+        </ul>
+      </div>
+    </div> 
+    
   </body>
 </html>
