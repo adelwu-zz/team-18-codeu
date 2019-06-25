@@ -52,7 +52,10 @@ header li a {
     border-radius: 50%;
     display: block;
     margin: auto;
+<<<<<<< HEAD
     margin-bottom: 30px;
+=======
+>>>>>>> 81a5143a9def2d01e53ac7d2825075d6851dfc4f
 }
 
 .profile-container {
@@ -77,12 +80,20 @@ header li a {
 .profile2 { order: 2; max-width: 33.333%; margin: 10px;}
 .profile3 { order: 3; max-width: 33.33%; margin: 10px;}
 
+<<<<<<< HEAD
 .p h3 {
+=======
+.p h2 {
+>>>>>>> 81a5143a9def2d01e53ac7d2825075d6851dfc4f
 	text-align: center;
 	margin-bottom: 5px;
 }
 
+<<<<<<< HEAD
 .p h4 {
+=======
+.p h3 {
+>>>>>>> 81a5143a9def2d01e53ac7d2825075d6851dfc4f
 	margin-top: 0;
 	text-align: center;
 	color: #b2b2b2;
