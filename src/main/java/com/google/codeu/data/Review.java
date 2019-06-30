@@ -19,7 +19,7 @@ package com.google.codeu.data;
 import java.util.UUID;
 
 /** A single message posted by a user. */
-public class Message {
+public class Review {
 
   private UUID id;
   private String user;
@@ -27,14 +27,14 @@ public class Message {
   private long timestamp;
 
   /**
-   * Constructs a new {@link Message} posted by {@code user} with {@code text} content. Generates a
+   * Constructs a new {@link Review} posted by {@code user} with {@code text} content. Generates a
    * random ID and uses the current system time for the creation time.
    */
-  public Message(String user, String text) {
+  public Review(String user, String text) {
     this(UUID.randomUUID(), user, text, System.currentTimeMillis());
   }
 
-  public Message(UUID id, String user, String text, long timestamp) {
+  public Review(UUID id, String user, String text, long timestamp) {
     this.id = id;
     this.user = user;
     this.text = text;

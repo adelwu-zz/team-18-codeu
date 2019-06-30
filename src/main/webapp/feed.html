@@ -2,41 +2,41 @@
 <html lang="en">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Message Feed</title>
+<title>Review Feed</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="/css/main.css">
 <link rel="stylesheet" href="/css/user-page.css">
 
 <script>
     
-  // Fetch messages and add them to the page.
-  function fetchMessages(){
+  // Fetch reviews and add them to the page.
+  function fetchReviews(){
     const url = '/feed';
     fetch(url).then((response) => {
       return response.json();
-    }).then((messages) => {
-      const messageContainer = document.getElementById('message-container');
-      if(messages.length == 0){
-       messageContainer.innerHTML = '<p>There are no posts yet.</p>';
+    }).then((reviews) => {
+      const reviewContainer = document.getElementById('review-container');
+      if(reviews.length == 0){
+       reviewContainer.innerHTML = '<p>There are no posts yet.</p>';
       }
       else{
-       messageContainer.innerHTML = '';  
+       reviewContainer.innerHTML = '';  
       }
-      messages.forEach((message) => {  
-       const messageDiv = buildMessageDiv(message);
-       messageContainer.appendChild(messageDiv);
+      reviews.forEach((review) => {  
+       const reviewDiv = buildReviewDiv(review);
+       reviewContainer.appendChild(reviewDiv);
       });
     });
   }
   
-  function buildMessageDiv(message){
+  function buildReviewDiv(review){
    const usernameDiv = document.createElement('div');
    usernameDiv.classList.add("left-align");
-   usernameDiv.appendChild(document.createTextNode(message.user));
+   usernameDiv.appendChild(document.createTextNode(review.user));
    
    const timeDiv = document.createElement('div');
    timeDiv.classList.add('right-align');
-   timeDiv.appendChild(document.createTextNode(new Date(message.timestamp)));
+   timeDiv.appendChild(document.createTextNode(new Date(review.timestamp)));
    
    const headerDiv = document.createElement('div');
    headerDiv.classList.add('card-header');
@@ -45,19 +45,19 @@
    
    const bodyDiv = document.createElement('div');
    bodyDiv.classList.add('card-body');
-   bodyDiv.innerHTML = message.text;
+   bodyDiv.innerHTML = review.text;
    
-   const messageDiv = document.createElement('div');
-   messageDiv.classList.add('card');
-   messageDiv.appendChild(headerDiv);
-   messageDiv.appendChild(bodyDiv);
+   const reviewDiv = document.createElement('div');
+   reviewDiv.classList.add('card');
+   reviewDiv.appendChild(headerDiv);
+   reviewDiv.appendChild(bodyDiv);
    
-   return messageDiv;
+   return reviewDiv;
   }
   
   // Fetch data and populate the UI of the page.
   function buildUI(){
-   fetchMessages();
+   fetchReviews();
   }
 </script>
 <script src="/js/navigation-loader.js"></script>
@@ -73,9 +73,9 @@
       </nav>
   </header>
  <div id="content">
-  <h1>Message Feed</h1>
+  <h1>Review Feed</h1>
   <hr/>
-  <div id="message-container"> Loading.. </div>
+  <div id="review-container"> Loading.. </div>
    
   </div>
  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

@@ -30,9 +30,9 @@ function setPageTitle() {
 }
 
 /**
- * Shows the message form if the user is logged in and viewing their own page.
+ * Shows the review form if the user is logged in and viewing their own page.
  */
-function showMessageFormIfViewingSelf() {
+function showReviewFormIfViewingSelf() {
   fetch('/login-status')
       .then((response) => {
         return response.json();
@@ -40,66 +40,66 @@ function showMessageFormIfViewingSelf() {
       .then((loginStatus) => {
         if (loginStatus.isLoggedIn &&
             loginStatus.username == parameterUsername) {
-          const messageForm = document.getElementById('message-form');
-          messageForm.classList.remove('hidden');
+          const reviewForm = document.getElementById('review-form');
+          reviewForm.classList.remove('hidden');
           document.getElementById('about-me-form').classList.remove('hidden');
         }
       });
 }
 
-/** Fetches messages and add them to the page. */
-function fetchMessages() {
-  const url = '/messages?user=' + parameterUsername;
+/** Fetches reviews and add them to the page. */
+function fetchReviews() {
+  const url = '/reviews?user=' + parameterUsername;
   fetch(url)
       .then((response) => {
         return response.json();
       })
-      .then((messages) => {
-        const messagesContainer = document.getElementById('message-container');
-        if (messages.length == 0) {
-          messagesContainer.innerHTML = '<p>This user has no posts yet.</p>';
+      .then((reviews) => {
+        const reviewsContainer = document.getElementById('review-container');
+        if (reviews.length == 0) {
+          reviewsContainer.innerHTML = '<p>This user has no posts yet.</p>';
         } else {
-          messagesContainer.innerHTML = '';
+          reviewsContainer.innerHTML = '';
         }
-        messages.forEach((message) => {
-          const messageDiv = buildMessageDiv(message);
-          messagesContainer.appendChild(messageDiv);
+        reviews.forEach((review) => {
+          const reviewDiv = buildReviewsDiv(review);
+          reviewsContainer.appendChild(reviewDiv);
         });
       });
 }
 
 /**
- * Builds an element that displays the message.
- * @param {Message} message
+ * Builds an element that displays the review.
+ * @param {review} review
  * @return {Element}
  */
-function buildMessageDiv(message) {
+function buildReviewsDiv(review) {
   const headerDiv = document.createElement('div');
   headerDiv.classList.add('card-header');
   headerDiv.appendChild(document.createTextNode(
-      message.user + ' - ' + new Date(message.timestamp)));
+      review.user + ' - ' + new Date(review.timestamp)));
 
   const bodyDiv = document.createElement('div');
   bodyDiv.classList.add('card-body');
-  bodyDiv.innerHTML = message.text;
+  bodyDiv.innerHTML = review.text;
 
-  const messageDiv = document.createElement('div');
-  messageDiv.classList.add('card');
-  messageDiv.appendChild(headerDiv);
-  messageDiv.appendChild(bodyDiv);
+  const reviewDiv = document.createElement('div');
+  reviewDiv.classList.add('card');
+  reviewDiv.appendChild(headerDiv);
+  reviewDiv.appendChild(bodyDiv);
 
-  return messageDiv;
+  return reviewDiv;
 }
 
 /** Fetches data and populates the UI of the page. */
 function buildUI() {
   setPageTitle();
-  showMessageFormIfViewingSelf();
-  fetchMessages();
+  showReviewFormIfViewingSelf();
+  fetchReviews();
   fetchAboutMe();
   const config = {removePlugins: [ 'ImageUpload' , 'blockQuote'],
                   toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList' ]};
-  ClassicEditor.create(document.getElementById('message-input'), config);
+  ClassicEditor.create(document.getElementById('review-input'), config);
 }
 
 /**
