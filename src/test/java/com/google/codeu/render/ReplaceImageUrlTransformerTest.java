@@ -9,7 +9,7 @@ public class ReplaceImageUrlTransformerTest {
   /** Tests that a particular input */
   private void runTransformTextTest(
       ReviewTransformer reviewTransformer, String inputText, String expectedResultText) {
-    Review inputReview = new Review("user1", inputText);
+    Review inputReview = new Review("user1", inputText, "hub", 5);
 
     // Runs the method under test.
     Review actualResult = reviewTransformer.transform(inputReview);

@@ -88,8 +88,11 @@ public class ReviewServlet extends HttpServlet {
 
     String user = userService.getCurrentUser().getEmail();
     String text = Jsoup.clean(request.getParameter("text"), Whitelist.relaxed());
+    String hub = request.getParameter("hub");
+    int rating = Integer.parseInt(request.getParameter("rating"));
 
-    Review review = new Review(user, text);
+
+    Review review = new Review(user, text, hub, rating);
     datastore.storeReview(review);
 
     response.sendRedirect("/user-page.html?user=" + user);

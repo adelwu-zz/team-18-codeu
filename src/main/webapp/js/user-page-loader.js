@@ -83,10 +83,20 @@ function buildReviewsDiv(review) {
   bodyDiv.classList.add('card-body');
   bodyDiv.innerHTML = review.text;
 
+  const hubDiv = document.createElement('div');
+  hubDiv.classList.add('btn btn:primary');
+  hubDiv.appendChild(document.createTextNode(review.hub));
+
+  const ratingDiv = document.createElement('div');
+  ratingDiv.classList.add('btn btn:secondary');
+  ratingDiv.appendChild(document.createTextNode(review.rating));
+
   const reviewDiv = document.createElement('div');
   reviewDiv.classList.add('card');
   reviewDiv.appendChild(headerDiv);
   reviewDiv.appendChild(bodyDiv);
+  reviewDiv.appendChild(hubDiv);
+  reviewDiv.appendChild(ratingDiv);
 
   return reviewDiv;
 }

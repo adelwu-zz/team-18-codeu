@@ -15,7 +15,7 @@ public class SequentialReviewTransformerTest {
     // Constructs the class under test.
     ReviewTransformer reviewTransformer = new SequentialReviewTransformer(Arrays.asList());
 
-    Review review0 = new Review("user0", "an input text");
+    Review review0 = new Review("user0", "an input text", "hub", 5);
 
     assertEquals(review0, reviewTransformer.transform(review0));
   }
@@ -25,8 +25,8 @@ public class SequentialReviewTransformerTest {
   public void testTransformTextOneDelegate() {
     ReviewTransformer mockDelegate = Mockito.mock(ReviewTransformer.class);
 
-    Review review0 = new Review("user0", "an input text");
-    Review review1 = new Review("user1", "mock output 1");
+    Review review0 = new Review("user0", "an input text", "hub", 1);
+    Review review1 = new Review("user1", "mock output 1", "hub", 2);
 
     Mockito.when(mockDelegate.transform(review0)).thenReturn(review1);
 
@@ -44,10 +44,10 @@ public class SequentialReviewTransformerTest {
     ReviewTransformer mockDelegate2 = Mockito.mock(ReviewTransformer.class);
     ReviewTransformer mockDelegate3 = Mockito.mock(ReviewTransformer.class);
 
-    Review review0 = new Review("user0", "an input text");
-    Review review1 = new Review("user1", "mock output 1");
-    Review review2 = new Review("user2", "mock output 2");
-    Review review3 = new Review("user3", "mock output 3");
+    Review review0 = new Review("user0", "an input text", "hub", 1);
+    Review review1 = new Review("user1", "mock output 1", "hub", 2);
+    Review review2 = new Review("user2", "mock output 2", "hub", 3);
+    Review review3 = new Review("user3", "mock output 3", "hub", 4);
 
     Mockito.when(mockDelegate1.transform(review0)).thenReturn(review1);
     Mockito.when(mockDelegate2.transform(review1)).thenReturn(review2);

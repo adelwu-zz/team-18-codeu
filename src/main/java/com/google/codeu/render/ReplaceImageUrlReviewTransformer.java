@@ -14,6 +14,7 @@ public class ReplaceImageUrlReviewTransformer implements ReviewTransformer {
     String textWithImagesReplaced = userText.replaceAll(regex, replacement);
 
     return new Review(
-        review.getId(), review.getUser(), textWithImagesReplaced, review.getTimestamp());
+        review.getId(), review.getUser(), textWithImagesReplaced, review.getTimestamp(), review.getHub(),
+        review.getRating());
   }
 }

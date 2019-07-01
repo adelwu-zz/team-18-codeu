@@ -49,18 +49,18 @@ limitations under the License.
     </header>
     <h1 id="page-title">User Page</h1>
 
-    <form id="review-form" action="/reviews" method="POST" class="hidden">
+    <form id="review-form" action="/reviews" method="POST">
       Create a New Review:
       <br/>
 
       <div class="form-group">
-        <input class="form-control" id="exampleInputEmail1" placeholder="Enter Hub">
-        <small id="hub-help" class="form-text text-muted">Which place do you want to review?</small>
+        <input name="hub" class="form-control" placeholder="Enter Hub">
+        <small class="form-text text-muted">Which place do you want to review?</small>
       </div>
 
     <div class="btn-group">
       <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-       <span class="selected">Rating</span><span class="caret"></span>
+       <span name="rating" class="selected">Rating</span><span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu">
         <li><a href="#">1</a></li>

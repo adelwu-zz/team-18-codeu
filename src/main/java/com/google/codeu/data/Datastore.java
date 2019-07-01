@@ -44,6 +44,8 @@ public class Datastore {
     reviewEntity.setProperty("user", review.getUser());
     reviewEntity.setProperty("text", review.getText());
     reviewEntity.setProperty("timestamp", review.getTimestamp());
+    reviewEntity.setProperty("hub", review.getHub());
+    reviewEntity.setProperty("rating", review.getRating());
 
     datastore.put(reviewEntity);
   }
@@ -90,8 +92,10 @@ public class Datastore {
         String entityUser = (String) entity.getProperty("user");
         String text = (String) entity.getProperty("text");
         long timestamp = (long) entity.getProperty("timestamp");
+        String hub = (String) entity.getProperty("hub");
+        int rating = (int) entity.getProperty("rating");
 
-        Review review = new Review(id, entityUser, text, timestamp);
+        Review review = new Review(id, entityUser, text, timestamp, hub, rating);
         reviews.add(review);
       } catch (Exception e) {
         System.err.println("Error reading review.");
