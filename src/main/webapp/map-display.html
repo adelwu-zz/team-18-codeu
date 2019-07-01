@@ -15,12 +15,21 @@
         });
 
         fastFoodRestaurants.forEach((fastFoodRestaurant) => {
-          new google.maps.Marker({
-            position: {lat: fastFoodRestaurant.lat, lng: fastFoodRestaurant.lng},
-            map: map
-          });
+          addLandmark(map, fastFoodRestaurant.lat, fastFoodRestaurant.lng, fastFoodRestaurant.name);
         });
       });
+    }
+    function addLandmark(map, lat, lng, description){
+      const marker = new google.maps.Marker({
+       position: {lat: lat, lng: lng},
+       map: map,
+     });
+     const infoWindow = new google.maps.InfoWindow({
+       content: description
+     });
+     marker.addListener('click', function() {
+       infoWindow.open(map, marker);
+     });
     }
   </script>
 

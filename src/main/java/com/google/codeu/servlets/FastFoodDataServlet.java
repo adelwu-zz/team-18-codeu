@@ -27,24 +27,28 @@ public class FastFoodDataServlet extends HttpServlet {
 
       double lat = Double.parseDouble(cells[0]);
       double lng = Double.parseDouble(cells[1]);
-      fastFoodArray.add(gson.toJsonTree(new FastFoodRestaurant(lat, lng)));
+      String name = cells[2];
+      fastFoodArray.add(gson.toJsonTree(new FastFoodRestaurant(lat, lng, name)));
     }
     scanner.close();
   }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("application/json");
-    response.getOutputStream().println(fastFoodArray.toString());
+    response.setContentType("text/html; charset=UTF-8;");
+    response.setCharacterEncoding("UTF-8");
+    response.getWriter().println(fastFoodArray.toString());
   }
 
   // This class could be its own file if we needed it outside this servlet
   private static class FastFoodRestaurant{
     double lat;
     double lng;
-    private FastFoodRestaurant(double lat, double lng) {
+    String name;
+    private FastFoodRestaurant(double lat, double lng, String name) {
       this.lat = lat;
       this.lng = lng;
+      this.name = name;
     }
   }
 }
