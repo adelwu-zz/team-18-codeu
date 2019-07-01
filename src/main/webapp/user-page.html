@@ -26,6 +26,16 @@ limitations under the License.
     <script src="https://cdn.ckeditor.com/ckeditor5/11.2.0/classic/ckeditor.js"></script>
     <script src="/js/user-page-loader.js"></script>
     <script src="/js/navigation-loader.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+    <script>
+      $(function(){
+        $(".dropdown-menu").on('click', 'li a', function(){
+          $(".selected").text($(this).text());
+          $(".selected").val($(this).text());
+         });
+      });
+    </script>
   </head>
   <body onload="buildUI();addLoginOrLogoutLinkToNavigation();">
     <header>
@@ -41,6 +51,26 @@ limitations under the License.
 
     <form id="review-form" action="/reviews" method="POST" class="hidden">
       Create a New Review:
+      <br/>
+
+      <div class="form-group">
+        <input class="form-control" id="exampleInputEmail1" placeholder="Enter Hub">
+        <small id="hub-help" class="form-text text-muted">Which place do you want to review?</small>
+      </div>
+
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+       <span class="selected">Rating</span><span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+      </ul>
+    </div>
+
       <br/>
       <textarea name="text" id="review-input" placeholder="Write your review here!" rows=4 required></textarea>
       <br/>
