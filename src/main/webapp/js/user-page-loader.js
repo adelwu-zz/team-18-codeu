@@ -88,7 +88,6 @@ function buildReviewsDiv(review) {
   hubDiv.appendChild(document.createTextNode(review.hub + ' - ' + review.rating));
   //hubDiv.appendChild(document.createTextNode(review.rating));
 
-
   const reviewDiv = document.createElement('div');
   reviewDiv.classList.add('card');
   reviewDiv.appendChild(hubDiv);
