@@ -93,7 +93,7 @@ public class Datastore {
         String text = (String) entity.getProperty("text");
         long timestamp = (long) entity.getProperty("timestamp");
         String hub = (String) entity.getProperty("hub");
-        int rating = (int) entity.getProperty("rating");
+        int rating = (int) (long) entity.getProperty("rating");
 
         Review review = new Review(id, entityUser, text, timestamp, hub, rating);
         reviews.add(review);

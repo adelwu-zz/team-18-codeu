@@ -30,27 +30,26 @@
   }
   
   function buildReviewDiv(review){
-   const usernameDiv = document.createElement('div');
-   usernameDiv.classList.add("left-align");
-   usernameDiv.appendChild(document.createTextNode(review.user));
-   
-   const timeDiv = document.createElement('div');
-   timeDiv.classList.add('right-align');
-   timeDiv.appendChild(document.createTextNode(new Date(review.timestamp)));
-   
-   const headerDiv = document.createElement('div');
-   headerDiv.classList.add('card-header');
-   headerDiv.appendChild(usernameDiv);
-   headerDiv.appendChild(timeDiv);
-   
-   const bodyDiv = document.createElement('div');
-   bodyDiv.classList.add('card-body');
-   bodyDiv.innerHTML = review.text;
-   
-   const reviewDiv = document.createElement('div');
-   reviewDiv.classList.add('card');
-   reviewDiv.appendChild(headerDiv);
-   reviewDiv.appendChild(bodyDiv);
+    const headerDiv = document.createElement('div');
+    headerDiv.classList.add('card-footer');
+    headerDiv.appendChild(document.createTextNode(
+        review.user + ' - ' + new Date(review.timestamp)));
+
+    const bodyDiv = document.createElement('div');
+    bodyDiv.classList.add('card-body');
+    bodyDiv.innerHTML = review.text;
+
+    const hubDiv = document.createElement('div');
+    hubDiv.classList.add('card-header');
+    hubDiv.appendChild(document.createTextNode(review.hub + ' - ' + review.rating));
+
+    const reviewDiv = document.createElement('div');
+    reviewDiv.classList.add('card');
+    reviewDiv.appendChild(hubDiv);
+    reviewDiv.appendChild(bodyDiv);
+    reviewDiv.appendChild(headerDiv);
+
+  return reviewDiv;
    
    return reviewDiv;
   }

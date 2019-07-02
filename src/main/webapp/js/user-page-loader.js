@@ -75,7 +75,7 @@ function fetchReviews() {
  */
 function buildReviewsDiv(review) {
   const headerDiv = document.createElement('div');
-  headerDiv.classList.add('card-header');
+  headerDiv.classList.add('card-footer');
   headerDiv.appendChild(document.createTextNode(
       review.user + ' - ' + new Date(review.timestamp)));
 
@@ -84,19 +84,16 @@ function buildReviewsDiv(review) {
   bodyDiv.innerHTML = review.text;
 
   const hubDiv = document.createElement('div');
-  hubDiv.classList.add('btn btn:primary');
-  hubDiv.appendChild(document.createTextNode(review.hub));
+  hubDiv.classList.add('card-header');
+  hubDiv.appendChild(document.createTextNode(review.hub + ' - ' + review.rating));
+  //hubDiv.appendChild(document.createTextNode(review.rating));
 
-  const ratingDiv = document.createElement('div');
-  ratingDiv.classList.add('btn btn:secondary');
-  ratingDiv.appendChild(document.createTextNode(review.rating));
 
   const reviewDiv = document.createElement('div');
   reviewDiv.classList.add('card');
-  reviewDiv.appendChild(headerDiv);
-  reviewDiv.appendChild(bodyDiv);
   reviewDiv.appendChild(hubDiv);
-  reviewDiv.appendChild(ratingDiv);
+  reviewDiv.appendChild(bodyDiv);
+  reviewDiv.appendChild(headerDiv);
 
   return reviewDiv;
 }

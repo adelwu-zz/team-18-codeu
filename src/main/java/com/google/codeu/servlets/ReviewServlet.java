@@ -89,6 +89,7 @@ public class ReviewServlet extends HttpServlet {
     String user = userService.getCurrentUser().getEmail();
     String text = Jsoup.clean(request.getParameter("text"), Whitelist.relaxed());
     String hub = request.getParameter("hub");
+    System.out.print(request.getParameter("rating"));
     int rating = Integer.parseInt(request.getParameter("rating"));
 
 
