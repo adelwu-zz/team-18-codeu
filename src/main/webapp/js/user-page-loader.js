@@ -86,7 +86,6 @@ function buildReviewsDiv(review) {
   const hubDiv = document.createElement('div');
   hubDiv.classList.add('card-header');
   hubDiv.appendChild(document.createTextNode(review.hub + ' - ' + review.rating));
-  //hubDiv.appendChild(document.createTextNode(review.rating));
 
   const reviewDiv = document.createElement('div');
   reviewDiv.classList.add('card');
