@@ -17,11 +17,11 @@ package com.google.codeu.servlets;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.codeu.data.Datastore;
-import com.google.codeu.data.Message;
-import com.google.codeu.render.JSoupCleanMessageTransformer;
-import com.google.codeu.render.MessageTransformer;
-import com.google.codeu.render.ReplaceImageUrlMessageTransformer;
-import com.google.codeu.render.SequentialMessageTransformer;
+import com.google.codeu.data.Review;
+import com.google.codeu.render.JSoupCleanReviewTransformer;
+import com.google.codeu.render.ReviewTransformer;
+import com.google.codeu.render.ReplaceImageUrlReviewTransformer;
+import com.google.codeu.render.SequentialReviewTransformer;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,24 +34,24 @@ import javax.servlet.http.HttpServletResponse;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
-/** Handles fetching and saving {@link Message} instances. */
-@WebServlet("/messages")
-public class MessageServlet extends HttpServlet {
+/** Handles fetching and saving {@link Review} instances. */
+@WebServlet("/reviews")
+public class ReviewServlet extends HttpServlet {
 
   private Datastore datastore;
-  private MessageTransformer messageTransformer;
+  private ReviewTransformer reviewTransformer;
 
   @Override
   public void init() {
     datastore = new Datastore();
-    messageTransformer =
-        new SequentialMessageTransformer(
+    reviewTransformer =
+        new SequentialReviewTransformer(
             Arrays.asList(
-                new JSoupCleanMessageTransformer(), new ReplaceImageUrlMessageTransformer()));
+                new JSoupCleanReviewTransformer(), new ReplaceImageUrlReviewTransformer()));
   }
 
   /**
-   * Responds with a JSON representation of {@link Message} data for a specific user. Responds with
+   * Responds with a JSON representation of {@link Review} data for a specific user. Responds with
    * an empty array if the user is not provided.
    */
   @Override
@@ -66,18 +66,18 @@ public class MessageServlet extends HttpServlet {
       return;
     }
 
-    List<Message> messages = datastore.getMessages(user);
-    List<Message> transformedMessages = new ArrayList<>();
-    for (Message message : messages) {
-      transformedMessages.add(messageTransformer.transform(message));
+    List<Review> reviews = datastore.getReviews(user);
+    List<Review> transformedReviews = new ArrayList<>();
+    for (Review review : reviews) {
+      transformedReviews.add(reviewTransformer.transform(review));
     }
     Gson gson = new Gson();
-    String json = gson.toJson(transformedMessages);
+    String json = gson.toJson(transformedReviews);
 
     response.getWriter().println(json);
   }
 
-  /** Stores a new {@link Message}. */
+  /** Stores a new {@link Review}. */
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     UserService userService = UserServiceFactory.getUserService();
@@ -88,9 +88,13 @@ public class MessageServlet extends HttpServlet {
 
     String user = userService.getCurrentUser().getEmail();
     String text = Jsoup.clean(request.getParameter("text"), Whitelist.relaxed());
+    String hub = request.getParameter("hub");
+    System.out.print(request.getParameter("rating"));
+    int rating = Integer.parseInt(request.getParameter("rating"));
 
-    Message message = new Message(user, text);
-    datastore.storeMessage(message);
+
+    Review review = new Review(user, text, hub, rating);
+    datastore.storeReview(review);
 
     response.sendRedirect("/user-page.html?user=" + user);
   }
