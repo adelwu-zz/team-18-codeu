@@ -15,10 +15,12 @@ limitations under the License.
 -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>User Page</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/user-page.css">
     <script src="https://cdn.ckeditor.com/ckeditor5/11.2.0/classic/ckeditor.js"></script>
@@ -40,22 +42,25 @@ limitations under the License.
     <form id="message-form" action="/messages" method="POST" class="hidden">
       Enter a new message:
       <br/>
-      <textarea name="text" id="message-input"></textarea>
+      <textarea name="text" id="message-input" placeholder="Write your review here!" rows=4 required></textarea>
       <br/>
-      <input type="submit" value="Submit">
+      <input type="submit" value="Submit" type="button" class="btn btn-primary">
     </form>
     <hr/>
  
-    <div id="about-me-container">Loading...</div>
-      <div id="about-me-form" class="hidden">
+    <div id="about-me-container" class="input-group">Loading...</div>
+      <div id="about-me-form" class="hidden" class="input-group-prepend">
       <form action="/about" method="POST">
-        <textarea name="about-me" placeholder="about me" rows=4 required></textarea>
+        <textarea class="form-control" name="about-me" placeholder="About me..." rows=4 required></textarea>
         <br/>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" type="button" class="btn btn-info">
      </form>
 
     <div id="message-container">Loading...</div>
     </div>
 
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>
