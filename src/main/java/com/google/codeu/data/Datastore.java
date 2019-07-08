@@ -28,6 +28,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+import javafx.util.Pair;
 
 /** Provides access to the data stored in Datastore. */
 public class Datastore {
@@ -38,45 +39,47 @@ public class Datastore {
     datastore = DatastoreServiceFactory.getDatastoreService();
   }
 
-  /** Stores the Message in Datastore. */
-  public void storeMessage(Message message) {
-    Entity messageEntity = new Entity("Message", message.getId().toString());
-    messageEntity.setProperty("user", message.getUser());
-    messageEntity.setProperty("text", message.getText());
-    messageEntity.setProperty("timestamp", message.getTimestamp());
+  /** Stores the Review in Datastore. */
+  public void storeReview(Review review) {
+    Entity reviewEntity = new Entity("Review", review.getId().toString());
+    reviewEntity.setProperty("user", review.getUser());
+    reviewEntity.setProperty("text", review.getText());
+    reviewEntity.setProperty("timestamp", review.getTimestamp());
+    reviewEntity.setProperty("hub", review.getHub());
+    reviewEntity.setProperty("rating", review.getRating());
 
-    datastore.put(messageEntity);
+    datastore.put(reviewEntity);
   }
 
   /**
-   * Gets messages posted by a specific user.
+   * Gets Reviews posted by a specific user.
    *
-   * @return a list of messages posted by the user, or empty list if user has never posted a
-   *     message. List is sorted by time descending.
+   * @return a list of Reviews posted by the user, or empty list if user has never posted a
+   *     Review. List is sorted by time descending.
    */
-  public List<Message> getMessages(String user) {
-    return messageGet(user);
+  public List<Review> getReviews(String user) {
+    return reviewGet(user);
   }
 
-  public List<Message> getAllMessages() {
-    return messageGet(null);
+  public List<Review> getAllReviews() {
+    return reviewGet(null);
   }
 
   /**
-   * Repeated code from getMessages and getAllMessages.
+   * Repeated code from getReviews and getAllReviews.
    *
-   * @return a list of messages posted by the user, or empty list if user has never posted a
-   *     message. List is sorted by time descending.
+   * @return a list of Reviews posted by the user, or empty list if user has never posted a
+   *     Review. List is sorted by time descending.
    */
-  public List<Message> messageGet(String user) {
-    List<Message> messages = new ArrayList<>();
+  public List<Review> reviewGet(String user) {
+    List<Review> reviews = new ArrayList<>();
 
     Query query;
     if (user == null) {
-      query = new Query("Message").addSort("timestamp", SortDirection.DESCENDING);
+      query = new Query("Review").addSort("timestamp", SortDirection.DESCENDING);
     } else {
       query =
-          new Query("Message")
+          new Query("Review")
               .setFilter(new Query.FilterPredicate("user", FilterOperator.EQUAL, user))
               .addSort("timestamp", SortDirection.DESCENDING);
     }
@@ -90,22 +93,24 @@ public class Datastore {
         String entityUser = (String) entity.getProperty("user");
         String text = (String) entity.getProperty("text");
         long timestamp = (long) entity.getProperty("timestamp");
+        String hub = (String) entity.getProperty("hub");
+        int rating = (int) (long) entity.getProperty("rating");
 
-        Message message = new Message(id, entityUser, text, timestamp);
-        messages.add(message);
+        Review review = new Review(id, entityUser, text, timestamp, hub, rating);
+        reviews.add(review);
       } catch (Exception e) {
-        System.err.println("Error reading message.");
+        System.err.println("Error reading review.");
         System.err.println(entity.toString());
         e.printStackTrace();
       }
     }
 
-    return messages;
+    return reviews;
   }
 
   public Set<String> getUsers() {
     Set<String> users = new HashSet<>();
-    Query query = new Query("Message");
+    Query query = new Query("Review");
     PreparedQuery results = datastore.prepare(query);
     for (Entity entity : results.asIterable()) {
       users.add((String) entity.getProperty("user"));
@@ -136,5 +141,39 @@ public class Datastore {
     User user = new User(email, aboutMe);
 
     return user;
+  }
+
+  public void storeHub(Hub hub){
+    Entity hubEntity = new Entity("Hub", hub.getId().toString());
+    hubEntity.setProperty("name", hub.getName());
+    hubEntity.setProperty("address", hub.getAddress());
+    hubEntity.setProperty("gpsLocation", hub.getLocation());
+    datastore.put(hubEntity);
+    // need to get information from the file?
+  }
+
+  public List<Hub> getAllHubs(){
+    List<Hub> hubs = new ArrayList<>();
+    Query query = new Query("Hub");
+    PreparedQuery results = datastore.prepare(query);
+    for (Entity entity : results.asIterable()) {
+      try {
+        String idString = entity.getKey().getName();
+        UUID id = UUID.fromString(idString);
+        String name = (String) entity.getProperty("name");
+        String address = (String) entity.getProperty("address");
+        Pair<Double, Double> gpsLocation = (Pair) entity.getProperty("gpsLocation");
+
+        Hub hub = new Hub(id, name, address, gpsLocation);
+        hubs.add(hub);
+      } catch (Exception e) {
+        System.err.println("Error reading Hub");
+        System.err.println(entity.toString());
+        e.printStackTrace();
+      }
+
+    }
+
+    return hubs;
   }
 }

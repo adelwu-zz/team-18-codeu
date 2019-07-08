@@ -26,6 +26,16 @@ limitations under the License.
     <script src="https://cdn.ckeditor.com/ckeditor5/11.2.0/classic/ckeditor.js"></script>
     <script src="/js/user-page-loader.js"></script>
     <script src="/js/navigation-loader.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+    <script>
+      $(function(){
+        $(".dropdown-menu").on('click', 'li a', function(){
+          $(".selected").text($(this).text());
+          $(".selected").val($(this).text());
+         });
+      });
+    </script>
   </head>
   <body onload="buildUI();addLoginOrLogoutLinkToNavigation();">
     <header>
@@ -39,10 +49,33 @@ limitations under the License.
     </header>
     <h1 id="page-title">User Page</h1>
 
-    <form id="message-form" action="/messages" method="POST" class="hidden">
-      Enter a new message:
+    <form id="review-form" action="/reviews" method="POST" class="hidden">
+      Create a New Review:
       <br/>
-      <textarea name="text" id="message-input" placeholder="Write your review here!" rows=4 required></textarea>
+
+      <div class="form-group">
+        <input name="hub" class="form-control" placeholder="Enter Hub">
+        <small class="form-text text-muted">Which place do you want to review?</small>
+      </div>
+
+    <!--
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+       Rating: <span name="rating" class="selected">1</span><span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+      </ul>
+    </div>
+    -->
+    <input name="rating" placeholder="Give a rating 1-5!"></input>
+
+      <br/>
+      <textarea name="text" id="review-input" placeholder="Write your review here!" rows=4 ></textarea>
       <br/>
       <input type="submit" value="Submit" type="button" class="btn btn-primary">
     </form>
@@ -55,8 +88,9 @@ limitations under the License.
         <br/>
         <input type="submit" value="Submit" type="button" class="btn btn-info">
      </form>
-
-    <div id="message-container">Loading...</div>
+     <br>
+     <h3> Review History </h3>
+    <div id="review-container">Loading...</div>
     </div>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
