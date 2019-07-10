@@ -1,33 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Places to visit in D.C.</title>
+  <title>Fast Food Restaurants in the U.S</title>
   <script src= "https://maps.googleapis.com/maps/api/js?key=AIzaSyAXzMvlI4qHMDFhLKxz2M2-A1Sn0cNg3F4"></script>
     <script>
-      function createMap(){
+      function createMapRestaurants(){
+        fetch('/fastfood-data').then(function(response) {
+          return response.json();
+        }).then((fastFoodRestaurants) => {
+
         const map  = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 38.89, lng: -77.048},
-          zoom: 16
+          center: {lat: 38.89, lng: -119.048},
+          zoom: 5
         });
 
-        addLandmark(map, 38.89, -77.05, 'The Lincoln Memorial', 'This memorial of Lincoln is one of the most iconic monuments in D.C.')
-        addLandmark(map, 38.8913, -77.0477, 'Vietnam Veterans Memorial',  'A memorial dedicated to veterans')
-        addLandmark(map, 38.8895, -77.0353, 'Washington Monument', 'A monument honoring George Washington during the American Revolution')
-      }
-    function addLandmark(map, lat, lng, title, description){
-      const marker = new google.maps.Marker({
-        position: {lat: lat, lng: lng},
-        map : map,
-        title: title
-      });
-      const infoWindow = new google.maps.InfoWindow({
-        content: description
-      });
-      marker.addListener('click', function(){
-        infoWindow.open(map, marker)
+        fastFoodRestaurants.forEach((fastFoodRestaurant) => {
+          addLandmark(map, fastFoodRestaurant.lat, fastFoodRestaurant.lng, fastFoodRestaurant.name);
+        });
       });
     }
-    </script>
+    function addLandmark(map, lat, lng, description){
+      const marker = new google.maps.Marker({
+       position: {lat: lat, lng: lng},
+       map: map,
+     });
+     const infoWindow = new google.maps.InfoWindow({
+       content: description
+     });
+     marker.addListener('click', function() {
+       infoWindow.open(map, marker);
+     });
+    }
+  </script>
+
     <style>
       #map{
         width: 500px;
@@ -36,9 +41,9 @@
       }
     </style>
 </head>
-<body onload = "createMap();">
-  <h1>Places to Visit in D.C.</h1>
+<body onload = "createMapRestaurants();">
+  <h1>Fast Food Restaurants in the U.S.</h1>
   <div id = "map"></div>
-  <p>This map shows some of the capital's monuments!</p>
+  <p>This map shows some the different fast food places to eat!</p>
 </body>
 </html>
