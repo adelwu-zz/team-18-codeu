@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Scanner;
 
 @WebServlet("/hub-list")
 public class HubListServlet extends HttpServlet {
@@ -23,7 +24,17 @@ public class HubListServlet extends HttpServlet {
   @Override
   public void init() {
     datastore = new Datastore();
+    Scanner scanner = new Scanner(getServletContext().getResourceAsStream("/WEB-INF/Hubs-data.csv"));
+    while(scanner.hasNextLine()){
+      String line = scanner.nextLine();
+      String [] cells = line.split(",");
 
+      double lat = Double.parseDouble(cells[0]);
+      double lng = Double.parseDouble(cells[1]);
+      String address = cells[3];
+      String name = cells[4];
+      //need to add to datastore if not already there
+    }
   }
 
   /** Responds with a JSON representation of all Hub data. */
