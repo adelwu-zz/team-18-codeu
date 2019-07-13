@@ -28,7 +28,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
-import javafx.util.Pair;
 
 /** Provides access to the data stored in Datastore. */
 public class Datastore {
@@ -147,7 +146,8 @@ public class Datastore {
     Entity hubEntity = new Entity("Hub", hub.getId().toString());
     hubEntity.setProperty("name", hub.getName());
     hubEntity.setProperty("address", hub.getAddress());
-    hubEntity.setProperty("gpsLocation", hub.getLocation());
+    hubEntity.setProperty("gpsLat", hub.getLat());
+    hubEntity.setProperty("gpsLong", hub.getLong());
     datastore.put(hubEntity);
     // need to get information from the file?
   }
@@ -161,10 +161,10 @@ public class Datastore {
         String idString = entity.getKey().getName();
         UUID id = UUID.fromString(idString);
         String name = (String) entity.getProperty("name");
+        Double latitude = (Double)entity.getProperty("gpsLat");
+        Double longitude = (Double) entity.getProperty("gpsLong");
         String address = (String) entity.getProperty("address");
-        Pair<Double, Double> gpsLocation = (Pair) entity.getProperty("gpsLocation");
-
-        Hub hub = new Hub(id, name, address, gpsLocation);
+        Hub hub = new Hub(id, name, address, latitude, longitude);
         hubs.add(hub);
       } catch (Exception e) {
         System.err.println("Error reading Hub");

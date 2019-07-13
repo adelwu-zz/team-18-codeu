@@ -23,6 +23,7 @@ public class HubListServlet extends HttpServlet {
   @Override
   public void init() {
     datastore = new Datastore();
+
   }
 
   /** Responds with a JSON representation of all Hub data. */
