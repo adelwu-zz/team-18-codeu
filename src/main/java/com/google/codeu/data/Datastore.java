@@ -152,8 +152,9 @@ public class Datastore {
     // need to get information from the file?
   }
 
-  public List<Hub> getAllHubs(){
-    List<Hub> hubs = new ArrayList<>();
+  public Set<Hub> getAllHubs(){
+    Set<Hub> hubs = new HashSet<>();
+    //List<Hub> hubs = new ArrayList<>();
     Query query = new Query("Hub");
     PreparedQuery results = datastore.prepare(query);
     for (Entity entity : results.asIterable()) {
