@@ -19,8 +19,9 @@ import com.google.appengine.api.users.UserServiceFactory;
 import com.google.codeu.data.Datastore;
 import com.google.codeu.data.Review;
 import com.google.codeu.render.JSoupCleanReviewTransformer;
-import com.google.codeu.render.ReviewTransformer;
 import com.google.codeu.render.ReplaceImageUrlReviewTransformer;
+import com.google.codeu.render.ReviewTransformer;
+import com.google.codeu.render.SentimentReviewTransformer;
 import com.google.codeu.render.SequentialReviewTransformer;
 import com.google.gson.Gson;
 import java.io.IOException;
@@ -47,7 +48,9 @@ public class ReviewServlet extends HttpServlet {
     reviewTransformer =
         new SequentialReviewTransformer(
             Arrays.asList(
-                new JSoupCleanReviewTransformer(), new ReplaceImageUrlReviewTransformer()));
+                new JSoupCleanReviewTransformer(),
+                new ReplaceImageUrlReviewTransformer(),
+                new SentimentReviewTransformer()));
   }
 
   /**
@@ -91,7 +94,6 @@ public class ReviewServlet extends HttpServlet {
     String hub = request.getParameter("hub");
     System.out.print(request.getParameter("rating"));
     int rating = Integer.parseInt(request.getParameter("rating"));
-
 
     Review review = new Review(user, text, hub, rating);
     datastore.storeReview(review);
