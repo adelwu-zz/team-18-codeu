@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
+import java.util.HashSet;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ import java.util.Scanner;
 import com.opencsv.CSVReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.io.IOException;
 import java.net.URL;
 
@@ -30,28 +32,24 @@ public class HubListServlet extends HttpServlet {
   @Override
   public void init() {
     datastore = new Datastore();
-    Set<Hub> hubs = datastore.getAllHubs();
-    //Scanner scanner = new Scanner(getServletContext().getResourceAsStream("/WEB-INF/Hubs-data.csv"));
+    List<Hub> hubs = datastore.getAllHubs();
+    Set<String> hubNames = new HashSet<>();
+    for (Hub hub : hubs){
+      hubNames.add(hub.getName());
+    }
     try{
-      //URL url = getClass().getResource("Hubs-data.csv");
-      File directory = new File(getClass().getResource("/WEB-INF/Hubs-data.csv").getFile());
-      System.out.println("hello there" + directory.getAbsolutePath());
-      FileReader fileReader = new FileReader(getServletContext().getResource("/WEB-INF/Hubs-data.csv").getFile());
-      CSVReader reader = new CSVReader(fileReader);
-      int x = 0;
+      InputStreamReader streamReader = new InputStreamReader(getServletContext().getResourceAsStream("/WEB-INF/Hubs-data.csv"));
+      CSVReader reader = new CSVReader(streamReader);
       String [] cells;
-      while((cells = reader.readNext()) != null && x == 0){
-      //String line = scanner.nextLine();
-        //ells = line.split(";");
+      while((cells = reader.readNext()) != null){
         double lat = Double.parseDouble(cells[0]);
         double lng = Double.parseDouble(cells[1]);
-        String address = cells[3];
-        String name = cells[4];
+        String address = cells[2];
+        String name = cells[3];
         Hub hub = new Hub(name, address, lat, lng);
-        if(!hubs.contains(hub)){
+        if(!hubNames.contains(hub.getName())){
           datastore.storeHub(hub);
         }
-        x = 1;
       }
     } catch (IOException e){
        e.printStackTrace();
@@ -64,7 +62,7 @@ public class HubListServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json");
 
-    Set<Hub> hubs = datastore.getAllHubs();
+    List<Hub> hubs = datastore.getAllHubs();
     Gson gson = new Gson();
     String json = gson.toJson(hubs);
     response.getOutputStream().println(json);
