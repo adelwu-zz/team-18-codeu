@@ -4,7 +4,7 @@ const parameterHubId = urlParams.get('hubId');
 
 // URL must include ?hubId=XYZ parameter. If not, redirect to hub list.
 if (!parameterHubId) {
-  window.location.replace('hub-list.html');
+  window.location.replace('hub-feed.html');
 }
 
 /**
@@ -14,15 +14,13 @@ if (!parameterHubId) {
 function fetchHubInfo(){
   const url = '/hub?hubId=' + parameterHubId;
   fetch(url).then((response) => {
-    return response.text();
+    return response.json();
   }).then((hub) => {
     document.getElementById('page-title').innerText = hub.name;
     document.title = hub.name;
 
     const hubInfoContainer = document.getElementById('hub-info-container');
-    
-    hubInfoContainer.innerHTML = hub;
-
+    hubInfoContainer.innerHTML = '<p>' + hub.id + '</p><br/><p>' + hub.address + '</p>';
   });
 }
 
@@ -43,6 +41,34 @@ function fetchHubReviews() {
       reviewsContainer.appendChild(reviewDiv);
     });
   });
+}
+
+/**
+ * Builds an element that displays the review.
+ * @param {review} review
+ * @return {Element}
+ */
+function buildReviewsDiv(review) {
+  const headerDiv = document.createElement('div');
+  headerDiv.classList.add('card-footer');
+  headerDiv.appendChild(document.createTextNode(
+      review.user + ' - ' + new Date(review.timestamp)));
+
+  const bodyDiv = document.createElement('div');
+  bodyDiv.classList.add('card-body');
+  bodyDiv.innerHTML = review.text;
+
+  const hubDiv = document.createElement('div');
+  hubDiv.classList.add('card-header');
+  hubDiv.appendChild(document.createTextNode(review.hub + ' - ' + review.rating));
+
+  const reviewDiv = document.createElement('div');
+  reviewDiv.classList.add('card');
+  reviewDiv.appendChild(hubDiv);
+  reviewDiv.appendChild(bodyDiv);
+  reviewDiv.appendChild(headerDiv);
+
+  return reviewDiv;
 }
 
 /** Fetches data and populates the UI of the page. */
