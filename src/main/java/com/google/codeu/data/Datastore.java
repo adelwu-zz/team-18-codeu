@@ -44,44 +44,30 @@ public class Datastore {
     reviewEntity.setProperty("user", review.getUser());
     reviewEntity.setProperty("text", review.getText());
     reviewEntity.setProperty("timestamp", review.getTimestamp());
-    reviewEntity.setProperty("hub", review.getHub());
+    reviewEntity.setProperty("hubId", review.getHubId().toString());
     reviewEntity.setProperty("rating", review.getRating());
-
     datastore.put(reviewEntity);
   }
 
-  /**
-   * Gets Reviews posted by a specific user.
-   *
-   * @return a list of Reviews posted by the user, or empty list if user has never posted a
-   *     Review. List is sorted by time descending.
-   */
-  public List<Review> getReviews(String user) {
-    return reviewGet(user);
-  }
-
   public List<Review> getAllReviews() {
-    return reviewGet(null);
+    return getReviews(null, null);
   }
 
   /**
-   * Repeated code from getReviews and getAllReviews.
+   * Gets Reviews posted by a specific user, or for a specific hub, or all reviews if both paramters are null.
    *
-   * @return a list of Reviews posted by the user, or empty list if user has never posted a
-   *     Review. List is sorted by time descending.
+   * @return a list of Reviews, sorted by time descending.
    */
-  public List<Review> reviewGet(String user) {
+  public List<Review> getReviews(String user, UUID hubId) {
     List<Review> reviews = new ArrayList<>();
 
-    Query query;
-    if (user == null) {
-      query = new Query("Review").addSort("timestamp", SortDirection.DESCENDING);
-    } else {
-      query =
-          new Query("Review")
-              .setFilter(new Query.FilterPredicate("user", FilterOperator.EQUAL, user))
-              .addSort("timestamp", SortDirection.DESCENDING);
+    Query query = new Query("Review");
+    if (user != null) {
+      query.setFilter(new Query.FilterPredicate("user", FilterOperator.EQUAL, user));
+    } else if (hubId != null) {
+      query.setFilter(new Query.FilterPredicate("hubId", FilterOperator.EQUAL, hubId.toString()));
     }
+    query.addSort("timestamp", SortDirection.DESCENDING);
 
     PreparedQuery results = datastore.prepare(query);
 
@@ -92,10 +78,12 @@ public class Datastore {
         String entityUser = (String) entity.getProperty("user");
         String text = (String) entity.getProperty("text");
         long timestamp = (long) entity.getProperty("timestamp");
-        String hub = (String) entity.getProperty("hub");
+        UUID entityHubId = UUID.fromString((String) entity.getProperty("hubId"));
         int rating = (int) (long) entity.getProperty("rating");
 
-        Review review = new Review(id, entityUser, text, timestamp, hub, rating);
+        String hubName = getHub(entityHubId).getName();
+
+        Review review = new Review(id, entityUser, text, timestamp, entityHubId, hubName, rating);
         reviews.add(review);
       } catch (Exception e) {
         System.err.println("Error reading review.");
@@ -149,11 +137,19 @@ public class Datastore {
     hubEntity.setProperty("gpsLat", hub.getLat());
     hubEntity.setProperty("gpsLong", hub.getLong());
     datastore.put(hubEntity);
-    // need to get information from the file?
   }
 
-  public List<Hub> getAllHubs(){
-  //  Set<Hub> hubs = new HashSet<>();
+  public Hub getHub(UUID hubId) {
+    List<Hub> hubs = getAllHubs();
+    for (Hub hub : hubs) {
+      if (hub.getId().equals(hubId)) {
+        return hub;
+      }
+    }
+    return null;
+  }
+
+  public List<Hub> getAllHubs() {
     List<Hub> hubs = new ArrayList<>();
     Query query = new Query("Hub");
     PreparedQuery results = datastore.prepare(query);

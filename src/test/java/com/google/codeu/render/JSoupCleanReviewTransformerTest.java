@@ -4,13 +4,14 @@ import static org.junit.Assert.assertEquals;
 
 import com.google.codeu.data.Review;
 import org.junit.Test;
+import java.util.UUID;
 
 public class JSoupCleanReviewTransformerTest { 
 
   /** Tests that a particular input */
   private void runTransformTextTest(
       ReviewTransformer reviewTransformer, String inputText, String expectedResultText) {
-    Review inputReview = new Review("user1", inputText, "hub", 5);
+    Review inputReview = new Review("user1", inputText, UUID.randomUUID(), "hub", 5);
 
     // Runs the method under test.
     Review actualResult = reviewTransformer.transform(inputReview);

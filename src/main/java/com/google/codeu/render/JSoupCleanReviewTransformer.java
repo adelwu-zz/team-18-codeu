@@ -13,7 +13,7 @@ public class JSoupCleanReviewTransformer implements ReviewTransformer {
     String text =
         Jsoup.clean(
             review.getText(), "", Whitelist.basic(), new OutputSettings().prettyPrint(false));
-    return new Review(review.getId(), review.getUser(), text, review.getTimestamp(), review.getHub(),
+    return new Review(review.getId(), review.getUser(), text, review.getTimestamp(), review.getHubId(), review.getHub(),
     	review.getRating());
   }
 }
