@@ -42,7 +42,10 @@
     //will replace this with an image
     const hubNameDiv = document.createElement('div');
     hubNameDiv.classList.add('card-header');
-    hubNameDiv.appendChild(document.createTextNode(hub.name));
+    hubNameNode = document.createElement('a');
+    hubNameNode.setAttribute("href", "/hub.html?hubId=" + hub.id);
+    hubNameNode.appendChild(document.createTextNode(hub.name));
+    hubNameDiv.appendChild(hubNameNode);
 
     const hubDiv = document.createElement('div');
     hubDiv.classList.add('card');
