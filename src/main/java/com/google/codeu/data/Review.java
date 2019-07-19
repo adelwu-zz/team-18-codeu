@@ -26,7 +26,6 @@ public class Review {
   private String text;
   private long timestamp;
   private String hub;
-  //private UUID hubId;
   private int rating;
 
   /**
@@ -43,7 +42,6 @@ public class Review {
     this.text = text;
     this.timestamp = timestamp;
     this.hub = hub;
-    //this.hubId = hubId;
     this.rating = rating;
   }
 
@@ -66,10 +64,6 @@ public class Review {
   public String getHub() {
     return hub;
   }
-
-  //public UUID getHubId() {
-  //  return hubId;
-  //}
 
   public int getRating() {
     return rating;
