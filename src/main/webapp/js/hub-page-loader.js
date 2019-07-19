@@ -19,8 +19,8 @@ function fetchHubInfo(){
     document.getElementById('page-title').innerText = hub.name;
     document.title = hub.name;
 
-    const hubInfoContainer = document.getElementById('hub-info-container');
-    hubInfoContainer.innerHTML = '<p>' + hub.id + '</p><br/><p>' + hub.address + '</p>';
+    document.getElementById('hub-id').appendChild(document.createTextNode(hub.id));
+    document.getElementById('hub-address').appendChild(document.createTextNode(hub.address));
   });
 }
 
