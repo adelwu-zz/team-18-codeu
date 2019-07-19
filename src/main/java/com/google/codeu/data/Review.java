@@ -37,7 +37,8 @@ public class Review {
     this(UUID.randomUUID(), user, text, System.currentTimeMillis(), hubId, hub, rating);
   }
 
-  public Review(UUID id, String user, String text, long timestamp, UUID hubId, String hub, int rating) {
+  public Review(
+      UUID id, String user, String text, long timestamp, UUID hubId, String hub, int rating) {
     this.id = id;
     this.user = user;
     this.text = text;

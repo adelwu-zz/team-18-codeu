@@ -1,18 +1,14 @@
 package com.google.codeu.servlets;
 
-import com.google.appengine.api.users.UserService;
-import com.google.appengine.api.users.UserServiceFactory;
 import com.google.codeu.data.Datastore;
 import com.google.codeu.data.Hub;
+import com.google.gson.Gson;
 import java.io.IOException;
+import java.util.UUID;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.jsoup.Jsoup;
-import org.jsoup.safety.Whitelist;
-import java.util.UUID;
-import com.google.gson.Gson;
 
 @WebServlet("/hub")
 public class HubServlet extends HttpServlet {

@@ -4,9 +4,9 @@ import static org.junit.Assert.assertEquals;
 
 import com.google.codeu.data.Review;
 import java.util.Arrays;
+import java.util.UUID;
 import org.junit.Test;
 import org.mockito.Mockito;
-import java.util.UUID;
 
 public class SequentialReviewTransformerTest {
 
@@ -56,8 +56,7 @@ public class SequentialReviewTransformerTest {
 
     // Constructs the class under test.
     ReviewTransformer reviewTransformer =
-        new SequentialReviewTransformer(
-            Arrays.asList(mockDelegate1, mockDelegate2, mockDelegate3));
+        new SequentialReviewTransformer(Arrays.asList(mockDelegate1, mockDelegate2, mockDelegate3));
 
     assertEquals(review3, reviewTransformer.transform(review0));
   }

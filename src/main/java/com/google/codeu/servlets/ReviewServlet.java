@@ -28,13 +28,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
-import java.util.UUID;
 
 /** Handles fetching and saving {@link Review} instances. */
 @WebServlet("/reviews")
@@ -55,8 +55,8 @@ public class ReviewServlet extends HttpServlet {
   }
 
   /**
-   * Responds with a JSON representation of {@link Review} data for a specific user or hub. Responds with
-   * an empty array if no user or hub is provided.
+   * Responds with a JSON representation of {@link Review} data for a specific user or hub. Responds
+   * with an empty array if no user or hub is provided.
    */
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {

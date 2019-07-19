@@ -3,10 +3,10 @@ package com.google.codeu.render;
 import static org.junit.Assert.assertEquals;
 
 import com.google.codeu.data.Review;
-import org.junit.Test;
 import java.util.UUID;
+import org.junit.Test;
 
-public class JSoupCleanReviewTransformerTest { 
+public class JSoupCleanReviewTransformerTest {
 
   /** Tests that a particular input */
   private void runTransformTextTest(

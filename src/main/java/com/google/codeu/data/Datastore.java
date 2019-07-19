@@ -54,7 +54,8 @@ public class Datastore {
   }
 
   /**
-   * Gets Reviews posted by a specific user, or for a specific hub, or all reviews if both paramters are null.
+   * Gets Reviews posted by a specific user, or for a specific hub, or all reviews if both paramters
+   * are null.
    *
    * @return a list of Reviews, sorted by time descending.
    */
@@ -130,7 +131,7 @@ public class Datastore {
     return user;
   }
 
-  public void storeHub(Hub hub){
+  public void storeHub(Hub hub) {
     Entity hubEntity = new Entity("Hub", hub.getId().toString());
     hubEntity.setProperty("name", hub.getName());
     hubEntity.setProperty("address", hub.getAddress());
@@ -158,7 +159,7 @@ public class Datastore {
         String idString = entity.getKey().getName();
         UUID id = UUID.fromString(idString);
         String name = (String) entity.getProperty("name");
-        Double latitude = (Double)entity.getProperty("gpsLat");
+        Double latitude = (Double) entity.getProperty("gpsLat");
         Double longitude = (Double) entity.getProperty("gpsLong");
         String address = (String) entity.getProperty("address");
         Hub hub = new Hub(id, name, address, latitude, longitude);
@@ -168,7 +169,6 @@ public class Datastore {
         System.err.println(entity.toString());
         e.printStackTrace();
       }
-
     }
 
     return hubs;
