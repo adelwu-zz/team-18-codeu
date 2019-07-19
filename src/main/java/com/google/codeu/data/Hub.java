@@ -1,7 +1,6 @@
 package com.google.codeu.data;
 
 import java.util.UUID;
-import javafx.util.Pair;
 
 public class Hub{
 
