@@ -25,6 +25,7 @@ public class Review {
   private String user;
   private String text;
   private long timestamp;
+  private UUID hubId;
   private String hub;
   private int rating;
 
@@ -32,15 +33,17 @@ public class Review {
    * Constructs a new {@link Review} posted by {@code user} with {@code text} content. Generates a
    * random ID and uses the current system time for the creation time.
    */
-  public Review(String user, String text, String hub, int rating) {
-    this(UUID.randomUUID(), user, text, System.currentTimeMillis(), hub, rating);
+  public Review(String user, String text, UUID hubId, String hub, int rating) {
+    this(UUID.randomUUID(), user, text, System.currentTimeMillis(), hubId, hub, rating);
   }
 
-  public Review(UUID id, String user, String text, long timestamp, String hub, int rating) {
+  public Review(
+      UUID id, String user, String text, long timestamp, UUID hubId, String hub, int rating) {
     this.id = id;
     this.user = user;
     this.text = text;
     this.timestamp = timestamp;
+    this.hubId = hubId;
     this.hub = hub;
     this.rating = rating;
   }
@@ -59,6 +62,10 @@ public class Review {
 
   public long getTimestamp() {
     return timestamp;
+  }
+
+  public UUID getHubId() {
+    return hubId;
   }
 
   public String getHub() {

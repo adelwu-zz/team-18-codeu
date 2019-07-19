@@ -26,6 +26,7 @@ public class SentimentReviewTransformer implements ReviewTransformer {
         review.getUser(),
         text,
         review.getTimestamp(),
+        review.getHubId(),
         review.getHub(),
         review.getRating());
   }
