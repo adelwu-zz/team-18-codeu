@@ -96,6 +96,23 @@ function buildReviewsDiv(review) {
   return reviewDiv;
 }
 
+/** Creates an element for the dropdown of hubs **/
+function hubDropdown() {
+  const hubs = document.getElementById('hubList');
+  const hubList = ['a', 'aa', 'aaa', 'aaaa']; //dummy data list
+
+  for (var i = 0; i < hubList.length; i ++) {
+    var child = document.createElement('option');
+    child.textContent = hubList[i];
+    child.value = hubList[i];
+    hubs.appendChild(child)
+  }
+  
+  return hubs;
+}
+
+
+
 /** Fetches data and populates the UI of the page. */
 function buildUI() {
   setPageTitle();
