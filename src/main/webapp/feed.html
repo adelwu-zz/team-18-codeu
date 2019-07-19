@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/css/user-page.css">
 
 <script>
-    
+
   // Fetch reviews and add them to the page.
   function fetchReviews(){
     const url = '/feed';
@@ -20,15 +20,15 @@
        reviewContainer.innerHTML = '<p>There are no posts yet.</p>';
       }
       else{
-       reviewContainer.innerHTML = '';  
+       reviewContainer.innerHTML = '';
       }
-      reviews.forEach((review) => {  
+      reviews.forEach((review) => {
        const reviewDiv = buildReviewDiv(review);
        reviewContainer.appendChild(reviewDiv);
       });
     });
   }
-  
+
   function buildReviewDiv(review){
     const headerDiv = document.createElement('div');
     headerDiv.classList.add('card-footer');
@@ -51,7 +51,7 @@
 
    return reviewDiv;
   }
-  
+
   // Fetch data and populate the UI of the page.
   function buildUI(){
    fetchReviews();
@@ -73,7 +73,7 @@
   <h1>Review Feed</h1>
   <hr/>
   <div id="review-container"> Loading.. </div>
-   
+
   </div>
  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

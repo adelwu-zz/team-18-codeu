@@ -141,4 +141,40 @@ public class Datastore {
 
     return user;
   }
+
+  public void storeHub(Hub hub){
+    Entity hubEntity = new Entity("Hub", hub.getId().toString());
+    hubEntity.setProperty("name", hub.getName());
+    hubEntity.setProperty("address", hub.getAddress());
+    hubEntity.setProperty("gpsLat", hub.getLat());
+    hubEntity.setProperty("gpsLong", hub.getLong());
+    datastore.put(hubEntity);
+    // need to get information from the file?
+  }
+
+  public List<Hub> getAllHubs(){
+  //  Set<Hub> hubs = new HashSet<>();
+    List<Hub> hubs = new ArrayList<>();
+    Query query = new Query("Hub");
+    PreparedQuery results = datastore.prepare(query);
+    for (Entity entity : results.asIterable()) {
+      try {
+        String idString = entity.getKey().getName();
+        UUID id = UUID.fromString(idString);
+        String name = (String) entity.getProperty("name");
+        Double latitude = (Double)entity.getProperty("gpsLat");
+        Double longitude = (Double) entity.getProperty("gpsLong");
+        String address = (String) entity.getProperty("address");
+        Hub hub = new Hub(id, name, address, latitude, longitude);
+        hubs.add(hub);
+      } catch (Exception e) {
+        System.err.println("Error reading Hub");
+        System.err.println(entity.toString());
+        e.printStackTrace();
+      }
+
+    }
+
+    return hubs;
+  }
 }
