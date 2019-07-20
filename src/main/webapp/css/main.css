@@ -100,8 +100,7 @@ header li a {
 }
 
 div.card {
-    margin-top: 20px;
-    margin-right: 20px;
+    margin: 10px;
 }
 
 div.card a {
