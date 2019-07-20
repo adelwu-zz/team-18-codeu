@@ -39,6 +39,7 @@ limitations under the License.
   </head>
   <body onload="buildUI();addLoginOrLogoutLinkToNavigation();">
     <header>
+      <img src="spaces-wordmark.png" alt="spaces" class="wordmark" />
       <nav>
         <ul id="navigation">
           <li><a href="/">Home</a></li>
@@ -50,32 +51,35 @@ limitations under the License.
     </header>
     <h1 id="page-title">User Page</h1>
 
-    <form id="review-form" action="/reviews" method="POST" class="hidden">
-      Create a New Review:
-      <br/>
+    <br/>
+    <h3>About Me</h3>
+    <div id="about-me-container" class="input-group">Loading...</div>
+    <div id="about-me-form" class="hidden" class="input-group-prepend">
+      <form action="/about" method="POST">
+        <textarea class="form-control" name="about-me" placeholder="About me..." rows=4 required></textarea>
+        <br/>
+        <input type="submit" value="Submit" type="button" class="btn btn-info">
+     </form>
+    </div>
 
+    <form id="review-form" action="/reviews" method="POST" class="hidden">
+      <hr/>
+      <h3>New Review</h3>
       <div class="form-group">
-        <input name="hubId" class="form-control" placeholder="Enter Hub ID">
-        <!-- <select id="hubList" placeholder="Choose Space">Space List Loading...</select> -->
-        <!-- <input name="hub" class="form-control" placeholder="Enter Hub"> -->
+        <select class="form-control" id="hubId" name="hubId">Space List Loading...</select>
         <small class="form-text text-muted">Which place do you want to review?</small>
       </div>
 
-    <!--
-    <div class="btn-group">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-       Rating: <span name="rating" class="selected">1</span><span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" role="menu">
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-      </ul>
-    </div>
-    -->
-    <input name="rating" placeholder="Give a rating 1-5!"></input>
+      <div class="form-group">
+        <select class="form-control" id="rating" name="rating">
+          <option value="1">1 star</option>
+          <option value="2">2 stars</option>
+          <option value="3">3 stars</option>
+          <option value="4">4 stars</option>
+          <option value="5">5 stars</option>
+        </select>
+        <small class="form-text text-muted">Give a rating.</small>
+      </div>
 
       <br/>
       <textarea name="text" id="review-input" placeholder="Write your review here!" rows=4 ></textarea>
@@ -84,17 +88,9 @@ limitations under the License.
     </form>
     <hr/>
 
-    <div id="about-me-container" class="input-group">Loading...</div>
-      <div id="about-me-form" class="hidden" class="input-group-prepend">
-      <form action="/about" method="POST">
-        <textarea class="form-control" name="about-me" placeholder="About me..." rows=4 required></textarea>
-        <br/>
-        <input type="submit" value="Submit" type="button" class="btn btn-info">
-     </form>
-     <br>
-     <h3> Review History </h3>
+    <br>
+    <h3> Review History </h3>
     <div id="review-container">Loading...</div>
-    </div>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

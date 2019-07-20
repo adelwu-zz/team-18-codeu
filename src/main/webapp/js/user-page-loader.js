@@ -76,8 +76,7 @@ function fetchReviews() {
 function buildReviewsDiv(review) {
   const headerDiv = document.createElement('div');
   headerDiv.classList.add('card-footer');
-  headerDiv.appendChild(document.createTextNode(
-      review.user + ' - ' + new Date(review.timestamp)));
+  headerDiv.appendChild(document.createTextNode(new Date(review.timestamp)));
 
   const bodyDiv = document.createElement('div');
   bodyDiv.classList.add('card-body');
@@ -85,7 +84,11 @@ function buildReviewsDiv(review) {
 
   const hubDiv = document.createElement('div');
   hubDiv.classList.add('card-header');
-  hubDiv.appendChild(document.createTextNode(review.hub + ' - ' + review.rating));
+  hubNameNode = document.createElement('a');
+  hubNameNode.setAttribute("href", "/hub.html?hubId=" + review.hubId);
+  hubNameNode.appendChild(document.createTextNode(review.hub));
+  hubDiv.appendChild(hubNameNode);
+  hubDiv.appendChild(document.createTextNode(' - ' + review.rating + ' stars'));
 
   const reviewDiv = document.createElement('div');
   reviewDiv.classList.add('card');
@@ -96,22 +99,20 @@ function buildReviewsDiv(review) {
   return reviewDiv;
 }
 
-/** Creates an element for the dropdown of hubs **/
-function hubDropdown() {
-  const hubs = document.getElementById('hubList');
-  const hubList = ['a', 'aa', 'aaa', 'aaaa']; //dummy data list
-
-  for (var i = 0; i < hubList.length; i ++) {
-    var child = document.createElement('option');
-    child.textContent = hubList[i];
-    child.value = hubList[i];
-    hubs.appendChild(child)
-  }
-  
-  return hubs;
+/** Creates an element for the dropdown of hubs. **/
+function makeHubDropdown() {
+  fetch('/hub-list').then((response) => {
+    return response.json();
+  }).then((hubs) => {
+    const hubList = document.getElementById('hubId');
+    hubs.forEach((hub) => {
+      var child = document.createElement('option');
+      child.textContent = hub.name;
+      child.value = hub.id;
+      hubList.appendChild(child)
+    });
+  });
 }
-
-
 
 /** Fetches data and populates the UI of the page. */
 function buildUI() {
@@ -119,6 +120,7 @@ function buildUI() {
   showReviewFormIfViewingSelf();
   fetchReviews();
   fetchAboutMe();
+  makeHubDropdown();
   const config = {removePlugins: [ 'ImageUpload' , 'blockQuote'],
                   toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList' ]};
   ClassicEditor.create(document.getElementById('review-input'), config);
