@@ -19,7 +19,8 @@ function fetchHubInfo(){
     document.getElementById('page-title').innerText = hub.name;
     document.title = hub.name;
 
-    document.getElementById('hub-id').appendChild(document.createTextNode(hub.id));
+    document.getElementById('hub-image').setAttribute("src", hub.photo);
+    document.getElementById('hub-description').appendChild(document.createTextNode(hub.desc));
     document.getElementById('hub-address').appendChild(document.createTextNode(hub.address));
   });
 }
@@ -33,13 +34,17 @@ function fetchHubReviews() {
     const reviewsContainer = document.getElementById('review-container');
     if (reviews.length == 0) {
       reviewsContainer.innerHTML = '<p>This hub has no reviews yet.</p>';
+      return;
     } else {
       reviewsContainer.innerHTML = '';
     }
+    var sum = 0;
     reviews.forEach((review) => {
-      const reviewDiv = buildReviewsDiv(review);
-      reviewsContainer.appendChild(reviewDiv);
+      reviewsContainer.appendChild(buildReviewsDiv(review));
+      sum += parseInt(review.rating, 10);
     });
+    document.getElementById('hub-average-rating').appendChild(document.createTextNode(
+      'Average rating: ' + (sum / reviews.length).toFixed(1) + ' stars'));
   });
 }
 
@@ -72,25 +77,6 @@ function buildReviewsDiv(review) {
   reviewDiv.appendChild(headerDiv);
 
   return reviewDiv;
-}
-
-function getReviewAverage(id, node){
-  const url = '/reviews?hubId=' + id;
-  fetch(url).then((response) => {
-    return response.json();
-  }).then((reviews) => {
-    var sum = 0;
-    var counter = 0;
-    reviews.forEach((review) => {
-      var rating = parseInt(review.rating, 10);
-      sum = sum + rating;
-      counter = counter + 1;
-    })
-    if(counter > 0){
-      var header = ' - ' + (sum/counter).toFixed(1) + ' stars';
-      node.appendChild(document.createTextNode(header));
-    }
-  });
 }
 
 /** Fetches data and populates the UI of the page. */
