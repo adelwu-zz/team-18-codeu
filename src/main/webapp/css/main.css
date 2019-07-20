@@ -33,6 +33,7 @@ header {
     height: 80px;
     display: flex;
     align-items: center;
+    width: 100%;
 }
 
 header * {
@@ -61,7 +62,6 @@ header li a {
     justify-content: center;
     margin: auto;
     width: 100%;
-    
 }
 
 #description {
@@ -99,3 +99,25 @@ header li a {
     background-color: transparent;
 }
 
+div.card {
+    margin-top: 20px;
+}
+
+div.card-header {
+    background-color: #efe0d9;
+}
+
+div.card-footer {
+    background-color: #f9f1ed;
+}
+
+nav {
+    text-align: right;
+    width: 100%;
+}
+
+img.wordmark {
+    height: 80px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
