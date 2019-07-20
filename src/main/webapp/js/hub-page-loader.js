@@ -74,6 +74,25 @@ function buildReviewsDiv(review) {
   return reviewDiv;
 }
 
+function getReviewAverage(id, node){
+  const url = '/reviews?hubId=' + id;
+  fetch(url).then((response) => {
+    return response.json();
+  }).then((reviews) => {
+    var sum = 0;
+    var counter = 0;
+    reviews.forEach((review) => {
+      var rating = parseInt(review.rating, 10);
+      sum = sum + rating;
+      counter = counter + 1;
+    })
+    if(counter > 0){
+      var header = ' - ' + (sum/counter).toFixed(1) + ' stars';
+      node.appendChild(document.createTextNode(header));
+    }
+  });
+}
+
 /** Fetches data and populates the UI of the page. */
 function buildHubPageUI() {
   fetchHubInfo();

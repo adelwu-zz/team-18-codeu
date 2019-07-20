@@ -68,19 +68,12 @@
     const bodyDiv = document.createElement('div');
     bodyDiv.classList.add('card-body');
 
-    bodyDiv.innerHTML = hub.address;
-    //will replace this with an image
-    const hubNameDiv = document.createElement('div');
-    hubNameDiv.classList.add('card-header');
-    hubNameNode = document.createElement('a');
-    hubNameNode.setAttribute("href", "/hub.html?hubId=" + hub.id);
-
-    const avgNode = document.createElement('span');
+    /*const avgNode = document.createElement('span');
     getReviewAverage(hub.id, avgNode);
 
     hubNameNode.appendChild(document.createTextNode(hub.name));
     hubNameDiv.appendChild(hubNameNode);
-    hubNameDiv.appendChild(avgNode);
+    hubNameDiv.appendChild(avgNode); */
 
     const hubNameDiv = document.createElement('h5');
     hubNameDiv.classList.add('card-title');
@@ -118,7 +111,9 @@
      map: map,
      title: name
    });
-   var contentString = "<a href='/hub.html?hubId=" + id + "'>" + name + "</a>"
+   var contentString = "<a href='/hub.html?hubId=" + id + "'>" + name + "</a>" +
+                    "<p>" + address + "</p>";
+
    const infoWindow = new google.maps.InfoWindow({
      content: contentString
    });
