@@ -46,7 +46,9 @@ public class HubListServlet extends HttpServlet {
         double lng = Double.parseDouble(cells[2]);
         String address = cells[3];
         String name = cells[4];
-        Hub hub = new Hub(name, address, lat, lng);
+        String photo = cells[5];
+        String desc = cells[6];
+        Hub hub = new Hub(name, address, lat, lng, photo, desc);
         if(!hubNames.contains(hub.getName())){
           datastore.storeHub(hub);
         }

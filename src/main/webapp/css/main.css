@@ -127,6 +127,10 @@ img.wordmark {
     margin-top: 20px;
 }
 
+img.hubImg {
+    object-fit: cover;
+}
+
 .btn-primary {
     background-color: #754734;
     border-color: #754734;
@@ -145,4 +149,14 @@ img.wordmark {
 .btn-info:hover {
     background-color: #45291e;
     border-color: #45291e;
+}
+
+.btn-secondary {
+    background-color: #efe0d9;
+    border-color: #efe0d9;
+}
+
+.btn-secondary:hover {
+    background-color: #754734;
+    border-color: #754734;
 }

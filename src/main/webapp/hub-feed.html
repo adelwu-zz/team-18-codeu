@@ -35,22 +35,46 @@
   }
 
   function buildHubDiv(hub){
+    
+    //image of hub
+    const image = document.createElement('img');
+    image.classList.add('hubImg');
+    image.classList.add('card-img-top');
+    image.setAttribute("src", hub.photo);
+    image.setAttribute("alt", "Image of space");
+    image.setAttribute("style", "height:200px;");
 
+    // body of card
     const bodyDiv = document.createElement('div');
     bodyDiv.classList.add('card-body');
-    bodyDiv.innerHTML = hub.address;
-    //will replace this with an image
-    const hubNameDiv = document.createElement('div');
-    hubNameDiv.classList.add('card-header');
-    hubNameNode = document.createElement('a');
-    hubNameNode.setAttribute("href", "/hub.html?hubId=" + hub.id);
-    hubNameNode.appendChild(document.createTextNode(hub.name));
-    hubNameDiv.appendChild(hubNameNode);
 
+    const hubNameDiv = document.createElement('h5');
+    hubNameDiv.classList.add('card-title');
+    hubNameDiv.appendChild(document.createTextNode(hub.name));
+    bodyDiv.appendChild(hubNameDiv);
+
+    const description = document.createElement('p');
+    description.classList.add('card-text');
+    description.setAttribute("style", "color:grey;")
+    description.appendChild(document.createTextNode(hub.desc));
+    bodyDiv.appendChild(description);
+
+    //button - read reviews
+    const reviewButton = document.createElement('input');
+    reviewButton.setAttribute("href", "/hub.html?hubId=" + hub.id);
+    reviewButton.setAttribute("type", "button");
+    reviewButton.classList.add('btn');
+    reviewButton.classList.add('btn-secondary');
+    reviewButton.setAttribute("value", "Read Reviews");
+    bodyDiv.appendChild(reviewButton);
+
+    // overall card
     const hubDiv = document.createElement('div');
     hubDiv.classList.add('card');
-    hubDiv.appendChild(hubNameDiv);
+    hubDiv.setAttribute("style", "width: 33%; margin-right:20px; margin-bottom:20px;");
+    hubDiv.appendChild(image);
     hubDiv.appendChild(bodyDiv);
+    
 
    return hubDiv;
   }
