@@ -51,8 +51,11 @@ function fetchHubReviews() {
 function buildReviewsDiv(review) {
   const headerDiv = document.createElement('div');
   headerDiv.classList.add('card-footer');
-  headerDiv.appendChild(document.createTextNode(
-      review.user + ' - ' + new Date(review.timestamp)));
+  userNameNode = document.createElement('a');
+  userNameNode.setAttribute("href", "/user-page.html?user=" + review.user);
+  userNameNode.appendChild(document.createTextNode(review.user));
+  headerDiv.appendChild(userNameNode);
+  headerDiv.appendChild(document.createTextNode(' - ' + new Date(review.timestamp)));
 
   const bodyDiv = document.createElement('div');
   bodyDiv.classList.add('card-body');
@@ -60,7 +63,7 @@ function buildReviewsDiv(review) {
 
   const hubDiv = document.createElement('div');
   hubDiv.classList.add('card-header');
-  hubDiv.appendChild(document.createTextNode(review.hub + ' - ' + review.rating));
+  hubDiv.appendChild(document.createTextNode(review.rating + ' stars'));
 
   const reviewDiv = document.createElement('div');
   reviewDiv.classList.add('card');

@@ -32,8 +32,11 @@
   function buildReviewDiv(review){
     const headerDiv = document.createElement('div');
     headerDiv.classList.add('card-footer');
-    headerDiv.appendChild(document.createTextNode(
-        review.user + ' - ' + new Date(review.timestamp)));
+    userNameNode = document.createElement('a');
+    userNameNode.setAttribute("href", "/user-page.html?user=" + review.user);
+    userNameNode.appendChild(document.createTextNode(review.user));
+    headerDiv.appendChild(userNameNode);
+    headerDiv.appendChild(document.createTextNode(' - ' + new Date(review.timestamp)));
 
     const bodyDiv = document.createElement('div');
     bodyDiv.classList.add('card-body');
@@ -41,7 +44,11 @@
 
     const hubDiv = document.createElement('div');
     hubDiv.classList.add('card-header');
-    hubDiv.appendChild(document.createTextNode(review.hub + ' - ' + review.rating));
+    hubNameNode = document.createElement('a');
+    hubNameNode.setAttribute("href", "/hub.html?hubId=" + review.hubId);
+    hubNameNode.appendChild(document.createTextNode(review.hub));
+    hubDiv.appendChild(hubNameNode);
+    hubDiv.appendChild(document.createTextNode(' - ' + review.rating + ' stars'));
 
     const reviewDiv = document.createElement('div');
     reviewDiv.classList.add('card');
@@ -61,19 +68,20 @@
 </head>
 <body onload="buildUI(); addLoginOrLogoutLinkToNavigation();">
   <header>
-      <nav>
-        <ul id="navigation">
-          <li><a href="/">Home</a></li>
-          <li><a href="/aboutus.html">Our Team</a></li>
-          <li><a href="/feed.html">Feed</a></li>
-          <li><a href="/hub-feed.html">Spaces</a></li>
-        </ul>
-      </nav>
+    <img src="spaces-wordmark.png" alt="spaces" class="wordmark" />
+    <nav>
+      <ul id="navigation">
+        <li><a href="/">Home</a></li>
+        <li><a href="/aboutus.html">Our Team</a></li>
+        <li><a href="/feed.html">Feed</a></li>
+        <li><a href="/hub-feed.html">Spaces</a></li>
+      </ul>
+    </nav>
   </header>
  <div id="content">
   <h1>Review Feed</h1>
   <hr/>
-  <div id="review-container"> Loading.. </div>
+  <div id="review-container"> Loading... </div>
 
   </div>
  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
