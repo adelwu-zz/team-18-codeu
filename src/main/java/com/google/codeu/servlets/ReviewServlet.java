@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -54,22 +55,27 @@ public class ReviewServlet extends HttpServlet {
   }
 
   /**
-   * Responds with a JSON representation of {@link Review} data for a specific user. Responds with
-   * an empty array if the user is not provided.
+   * Responds with a JSON representation of {@link Review} data for a specific user or hub. Responds
+   * with an empty array if no user or hub is provided.
    */
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json");
 
     String user = request.getParameter("user");
+    String hubId = request.getParameter("hubId");
 
-    if (user == null || user.equals("")) {
+    List<Review> reviews;
+    if (user != null && !user.isEmpty()) {
+      reviews = datastore.getReviews(user, null);
+    } else if (hubId != null && !hubId.isEmpty()) {
+      reviews = datastore.getReviews(null, UUID.fromString(hubId));
+    } else {
       // Request is invalid, return empty array
       response.getWriter().println("[]");
       return;
     }
 
-    List<Review> reviews = datastore.getReviews(user);
     List<Review> transformedReviews = new ArrayList<>();
     for (Review review : reviews) {
       transformedReviews.add(reviewTransformer.transform(review));
@@ -91,11 +97,11 @@ public class ReviewServlet extends HttpServlet {
 
     String user = userService.getCurrentUser().getEmail();
     String text = Jsoup.clean(request.getParameter("text"), Whitelist.relaxed());
-    String hub = request.getParameter("hub");
+    UUID hubId = UUID.fromString(request.getParameter("hubId"));
     System.out.print(request.getParameter("rating"));
     int rating = Integer.parseInt(request.getParameter("rating"));
 
-    Review review = new Review(user, text, hub, rating);
+    Review review = new Review(user, text, hubId, "", rating);
     datastore.storeReview(review);
 
     response.sendRedirect("/user-page.html?user=" + user);
