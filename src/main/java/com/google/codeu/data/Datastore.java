@@ -137,6 +137,8 @@ public class Datastore {
     hubEntity.setProperty("address", hub.getAddress());
     hubEntity.setProperty("gpsLat", hub.getLat());
     hubEntity.setProperty("gpsLong", hub.getLong());
+    hubEntity.setProperty("photo", hub.getPhoto());
+    hubEntity.setProperty("desc", hub.getDesc());
     datastore.put(hubEntity);
   }
 
@@ -162,7 +164,9 @@ public class Datastore {
         Double latitude = (Double) entity.getProperty("gpsLat");
         Double longitude = (Double) entity.getProperty("gpsLong");
         String address = (String) entity.getProperty("address");
-        Hub hub = new Hub(id, name, address, latitude, longitude);
+        String photo = (String) entity.getProperty("photo");
+        String desc = (String) entity.getProperty("desc");
+        Hub hub = new Hub(id, name, address, latitude, longitude, photo, desc);
         hubs.add(hub);
       } catch (Exception e) {
         System.err.println("Error reading Hub");

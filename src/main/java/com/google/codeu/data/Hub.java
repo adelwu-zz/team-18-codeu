@@ -9,16 +9,22 @@ public class Hub{
   private String address;
   private Double gpsLat;
   private Double gpsLong;
-  public Hub(String name, String address, Double gpsLat, Double gpsLong){
-    this(UUID.randomUUID(), name, address, gpsLat, gpsLong);
+  private String photo;
+  private String desc;
+
+
+  public Hub(String name, String address, Double gpsLat, Double gpsLong, String photo, String desc){
+    this(UUID.randomUUID(), name, address, gpsLat, gpsLong, photo, desc);
   }
 
-  public Hub(UUID id, String name, String address, Double gpsLat, Double gpsLong){
+  public Hub(UUID id, String name, String address, Double gpsLat, Double gpsLong, String photo, String desc){
     this.id = id;
     this.name = name;
     this.address = address;
     this.gpsLat = gpsLat;
     this.gpsLong = gpsLong;
+    this.photo = photo;
+    this.desc = desc;
   }
 
   public UUID getId() {
@@ -36,8 +42,17 @@ public class Hub{
   public Double getLat(){
     return gpsLat;
   }
+
   public Double getLong(){
     return gpsLong;
+  }
+
+  public String getPhoto(){
+    return photo;
+  }
+
+  public String getDesc() {
+    return desc;
   }
 
 }
