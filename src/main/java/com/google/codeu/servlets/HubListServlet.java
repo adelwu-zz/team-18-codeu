@@ -40,12 +40,12 @@ public class HubListServlet extends HttpServlet {
     try{
       InputStreamReader streamReader = new InputStreamReader(getServletContext().getResourceAsStream("/WEB-INF/Hubs-data.csv"));
       CSVReader reader = new CSVReader(streamReader);
-      String [] cells;
+      String[] cells;
       while((cells = reader.readNext()) != null){
-        double lat = Double.parseDouble(cells[0]);
-        double lng = Double.parseDouble(cells[1]);
-        String address = cells[2];
-        String name = cells[3];
+        double lat = Double.parseDouble(cells[1]);
+        double lng = Double.parseDouble(cells[2]);
+        String address = cells[3];
+        String name = cells[4];
         Hub hub = new Hub(name, address, lat, lng);
         if(!hubNames.contains(hub.getName())){
           datastore.storeHub(hub);
