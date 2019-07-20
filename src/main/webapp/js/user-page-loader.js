@@ -96,22 +96,20 @@ function buildReviewsDiv(review) {
   return reviewDiv;
 }
 
-/** Creates an element for the dropdown of hubs **/
-function hubDropdown() {
-  const hubs = document.getElementById('hubList');
-  const hubList = ['a', 'aa', 'aaa', 'aaaa']; //dummy data list
-
-  for (var i = 0; i < hubList.length; i ++) {
-    var child = document.createElement('option');
-    child.textContent = hubList[i];
-    child.value = hubList[i];
-    hubs.appendChild(child)
-  }
-  
-  return hubs;
+/** Creates an element for the dropdown of hubs. **/
+function makeHubDropdown() {
+  fetch('/hub-list').then((response) => {
+    return response.json();
+  }).then((hubs) => {
+    const hubList = document.getElementById('hubId');
+    hubs.forEach((hub) => {
+      var child = document.createElement('option');
+      child.textContent = hub.name;
+      child.value = hub.id;
+      hubList.appendChild(child)
+    });
+  });
 }
-
-
 
 /** Fetches data and populates the UI of the page. */
 function buildUI() {
@@ -119,6 +117,7 @@ function buildUI() {
   showReviewFormIfViewingSelf();
   fetchReviews();
   fetchAboutMe();
+  makeHubDropdown();
   const config = {removePlugins: [ 'ImageUpload' , 'blockQuote'],
                   toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList' ]};
   ClassicEditor.create(document.getElementById('review-input'), config);
