@@ -27,14 +27,37 @@
        hubContainer.innerHTML = '';
       }
       hubs.forEach((hub) => {
-       const hubDiv = buildHubDiv(hub);
+       var avg = getReviewAverage(hub.id);
+       const hubDiv = buildHubDiv(hub, avg);
        hubContainer.appendChild(hubDiv);
        addLandmark(map, hub.gpsLat, hub.gpsLong, hub.name, hub.address);
       });
     });
   }
 
-  function buildHubDiv(hub){
+  function getReviewAverage(id){
+    var sum = 0;
+    var counter = 0;
+    const url = '/reviews?hubId=' + id;
+    fetch(url).then((response) => {
+      return response.json();
+    }).then((reviews) => {
+      return 300;
+      reviews.forEach((review) => {
+        var rating = parseInt(review.rating, 10);
+        sum = sum + rating;
+        counter = counter + 1;
+      });
+    })
+    .catch(function() {
+      return 100;
+    });
+  //  if(sum == 0)
+    //  return 0;
+    return counter;
+  }
+
+  function buildHubDiv(hub, avg){
 
     const bodyDiv = document.createElement('div');
     bodyDiv.classList.add('card-body');
@@ -44,7 +67,8 @@
     hubNameDiv.classList.add('card-header');
     hubNameNode = document.createElement('a');
     hubNameNode.setAttribute("href", "/hub.html?hubId=" + hub.id);
-    hubNameNode.appendChild(document.createTextNode(hub.name));
+    var header = hub.name + ' - ' + avg.toString() + ' stars';
+    hubNameNode.appendChild(document.createTextNode(header));
     hubNameDiv.appendChild(hubNameNode);
 
     const hubDiv = document.createElement('div');
