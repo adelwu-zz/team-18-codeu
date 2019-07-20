@@ -61,7 +61,7 @@
 
     //button - read reviews
     const reviewButton = document.createElement('input');
-    reviewButton.setAttribute("href", "/hub.html?hubId=" + hub.id);
+    reviewButton.setAttribute("onclick", "window.location.replace('/hub.html?hubId=" + hub.id + "')");
     reviewButton.setAttribute("type", "button");
     reviewButton.classList.add('btn');
     reviewButton.classList.add('btn-secondary');
@@ -73,7 +73,6 @@
     hubDiv.classList.add('card');
     hubDiv.appendChild(image);
     hubDiv.appendChild(bodyDiv);
-    
 
    return hubDiv;
   }
