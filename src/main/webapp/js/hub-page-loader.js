@@ -19,7 +19,8 @@ function fetchHubInfo(){
     document.getElementById('page-title').innerText = hub.name;
     document.title = hub.name;
 
-    document.getElementById('hub-id').appendChild(document.createTextNode(hub.id));
+    document.getElementById('hub-image').setAttribute("src", hub.photo);
+    document.getElementById('hub-description').appendChild(document.createTextNode(hub.desc));
     document.getElementById('hub-address').appendChild(document.createTextNode(hub.address));
   });
 }
@@ -33,13 +34,17 @@ function fetchHubReviews() {
     const reviewsContainer = document.getElementById('review-container');
     if (reviews.length == 0) {
       reviewsContainer.innerHTML = '<p>This hub has no reviews yet.</p>';
+      return;
     } else {
       reviewsContainer.innerHTML = '';
     }
+    var sum = 0;
     reviews.forEach((review) => {
-      const reviewDiv = buildReviewsDiv(review);
-      reviewsContainer.appendChild(reviewDiv);
+      reviewsContainer.appendChild(buildReviewsDiv(review));
+      sum += parseInt(review.rating, 10);
     });
+    document.getElementById('hub-average-rating').appendChild(document.createTextNode(
+      'Average rating: ' + (sum / reviews.length).toFixed(1) + ' stars'));
   });
 }
 
