@@ -1,36 +1,37 @@
-39.9528,-75.193779,"3420 Walnut St, Philadelphia, PA 19104",Van Pelt Library
-39.95171,-75.192762,"220 S 34th St, Philadelphia, PA 19104",Fisher Fine Arts Library
-39.952351,-75.191088,"3330 Walnut St, Philadelphia, PA 19104",Levine Hall
-39.952187,-75.190605,"210 S 33rd St, Philadelphia, PA 19104",Skirkanich Hall
-39.952038,-75.18972,"209 S 33rd St, Philadelphia, PA 19104",David Rittenhouse Laboratory
-39.950608,-75.189256,"Smith Walk, Philadelphia, PA 19104",Education Commons
-39.9478,-75.193431,"3400 Civic Center Blvd, Philadelphia, PA 19104",Starbucks (CHOP)
-39.950934,-75.193885,"3417 Spruce St, Philadelphia, PA 19104",Houston Hall
-39.950886,-75.195012,"255 S 36th St, Philadelphia, PA 19104",Williams Cafe
-39.952754,-75.19568,"3620 Walnut St, Philadelphia, PA 19104",Annenberg School for Communication Library
-39.952229,-75.195283,"3601 Locust Walk, Philadelphia, PA 19104",ARCH / Cultural Centers
-39.952923,-75.188935,"3205 Walnut St, Philadelphia, PA 19104",Singh Center for Nanotechnology
-39.954227,-75.189192,"Papadakis Integrated Sciences Building, 3245 Chestnut St, Philadelphia, PA 19104",Saxbys Drexel PISB
-39.953025,-75.190682,"3333 Walnut St, Philadelphia, PA 19104",Hill College House
-39.953678,-75.195244,"3601 Walnut St, Philadelphia, PA 19104",Penn Bookstore (Starbucks)
-39.953201,-75.19814,"Jon M. Huntsman Hall, 3730 Walnut St, Philadelphia, PA 19104",Jon M. Hunstman Hall
-39.952846,-75.199312,"3803 Locust Walk, Philadelphia, PA 19104",Perry World House
-39.952491,-75.199372,"3800 LOCUST WALK, 1920 COMMONS BLDG, Philadelphia, PA 19104",Starbucks (Commons)
-39.95227,-75.199421,"Class of 1920 Commons, 3800 Locust Walk, Philadelphia, PA 19104",Amazon Center @ Commons
-39.953984,-75.200351,"3901 Walnut St, Philadelphia, PA 19104",Starbucks (39th)
-39.954704,-75.199895,"3900 Chestnut St Unit 4, Philadelphia, PA 19104",Tea-Do
-39.954369,-75.203375,"4013 Walnut St, Philadelphia, PA 19104",Metropolitan Bakery & Cafe
-39.956314,-75.202219,"Ludlow St &, S 40th St, Philadelphia, PA 19104",Green Line Cafe
-39.95238,-75.200147,"3820 Locust Walk, Philadelphia, PA 19104",Harnwell College House
-39.952061,-75.201067,"3910 Irving St, Philadelphia, PA 19104",Harrison College House
-39.953162,-75.201334,"3901 Locust Walk, Philadelphia, PA 19104",Rodin College House
-39.953707,-75.201024,"3900 Walnut St, Philadelphia, PA 19104",W.E.B Du Bois College House
-39.951559,-75.200102,"3817 Spruce St, Philadelphia, PA 19104",Mayer Stouffer College House
-39.951863,-75.202404,"3909 Spruce St, Philadelphia, PA 19104",Gregory College House
-39.950859,-75.198088,"3702 Spruce St, Philadelphia, PA 19104",Platt Student Peforming Arts House
-39.951088,-75.198748,"3736 Spruce St, Philadelphia, PA 19104",SoBol University City
-39.950422,-75.19765,"The Quadrangle, Philadelphia, PA 19104",The Quad
-39.953705,-75.191296,"3335 Woodland Walk, Philadelphia, PA 19104",New College House
-39.95414,-75.193461,"3400 Chestnut St, Philadelphia, PA 19104",Biddle Law Library
-39.954225,-75.194156,"3465 Sansom St, Philadelphia, PA 19104",Kings Court English House
-39.954033,-75.194827,"118 S 36th St, Philadelphia, PA 19104",Institute of Comtemporary Art
+1,39.9528,-75.193779,"3420 Walnut St, Philadelphia, PA 19104",Van Pelt Library,https://snworksceo.imgix.net/dpn/4b49ae0c-17dc-455a-8373-f3c56315b922.sized-1000x1000.jpg?w=1000,"The central library on campus, Van Pelt has abundant study rooms, floors, and gorgeous study spaces, along with Mark's cafe and the 24/7 undergraduate study space."
+2,39.95171,-75.192762,"220 S 34th St, Philadelphia, PA 19104",Fisher Fine Arts Library,https://live.staticflickr.com/8359/8256271304_b1ae8f9086_b.jpg,"One of the most beautiful and historic libraries on campus, and includes a free art exhibit."
+3,39.952351,-75.191088,"3330 Walnut St, Philadelphia, PA 19104",Levine Hall,https://admissions.upenn.edu/sites/default/files/styles/16_9_scale_1920x1080/public/2018-05/JCalvo%20Penn%20Levine%20Hall%20sized.jpg?itok=aJ6evxMC,"Part of the engineering quad, Levine is home to many SEAS classes and OHs."
+4,39.952187,-75.190605,"210 S 33rd St, Philadelphia, PA 19104",Skirkanich Hall,https://i.pinimg.com/originals/99/d7/af/99d7af5d8b2b6e5359a4256d73604cde.jpg,"The newest section of the engineering quad, home to dark stone and green ceramic walls."
+5,39.952038,-75.18972,"209 S 33rd St, Philadelphia, PA 19104",David Rittenhouse Laboratory,https://snworksceo.imgix.net/dpn/22e23d9f-ac22-4843-9093-43d57c2bc5f3.sized-1000x1000.jpg?w=1000,"Built in 1954, DRL is home to all the Physics and Math classes/research for Penn."
+6,39.950608,-75.189256,"Smith Walk, Philadelphia, PA 19104",Education Commons,https://commons.library.upenn.edu/sites/default/files/styles/study_group/public/images/study_rooms/EC%20open%20space.jpg?itok=tpUUFuz9&c=c0c331f512afedd37573b5ace6c5a85f,A state-of-the-art study and information space that supports teaching and collaborative learning
+7,39.9478,-75.193431,"3400 Civic Center Blvd, Philadelphia, PA 19104",Starbucks (CHOP),https://organdonationalliance.org/wp-content/uploads/2016/09/Penn.jpg,"A not as crowded as the others, lots of space and is slightly off campus!"
+8,39.950934,-75.193885,"3417 Spruce St, Philadelphia, PA 19104",Houston Hall,https://pennalumniblog.files.wordpress.com/2018/09/university-of-pennsylvania-houston-hall-bill-cannon.jpg,Get a sushi bowl and chill in the huge lounging space!
+9,39.950886,-75.195012,"255 S 36th St, Philadelphia, PA 19104",Williams Cafe,https://spoonuniversity.com/wp-content/uploads/sites/5/2015/11/DSC05082-2-447x670.jpg,Take a coffee break between classes.
+10,39.952754,-75.19568,"3620 Walnut St, Philadelphia, PA 19104",Annenberg School for Communication Library,https://home.www.upenn.edu/sites/default/files/styles/linkwidget_card/public/widgets/link/academics-schools-annenberg.jpg?itok=9cyJBwTB,"Big, bright, well-lit space for photoshoots or work!"
+11,39.952229,-75.195283,"3601 Locust Walk, Philadelphia, PA 19104",ARCH / Cultural Centers,https://www.vpul.upenn.edu/perelmanquad/files/ARCH_-_East_Entrance1_resize.jpg,"Come by for awesome people and learn more about PAACH, Makuu, and La Casa Latina. Or SABS in at Frontera!"
+12,39.952923,-75.188935,"3205 Walnut St, Philadelphia, PA 19104",Singh Center for Nanotechnology,https://www.pennconnects.upenn.edu/all_project_images/singh_center_for_nanotech_images/singh_nanotech_large_6.jpg,"A hidden gem next to DRL, great for quiet studying in a modern, new space."
+13,39.954227,-75.189192,"Papadakis Integrated Sciences Building, 3245 Chestnut St, Philadelphia, PA 19104",Saxbys Drexel PISB,https://media.phillyvoice.com/media/images/Drexel-PISB-2_Credit-Greg-Galiffa.2e16d0ba.fill-735x490.jpg,Saxbys but near NCH and Shake Shack!
+14,39.953025,-75.190682,"3333 Walnut St, Philadelphia, PA 19104",Hill College House,https://hill.house.upenn.edu/sites/hill.house.upenn.edu/files/styles/banner-big/public/banners/renovated-atrium.jpg?itok=owBdPIPj,"Newly renovated in 2017, Hill is now a busy hub for freshman! It has a dining hall, study spaces, a gym, dance studio, and even music practice rooms. There are 8 lounge spaces on each floor, 2 for each color quadrant."
+15,39.953678,-75.195244,"3601 Walnut St, Philadelphia, PA 19104",Penn Bookstore (Starbucks),https://snworksceo.imgix.net/dpn/c5f4f01c-7503-4dca-8a1e-8682a625241c.sized-1000x1000.jpg?w=1000,Come buys school supplies or gear! Starbucks offers a large space upstairs.
+16,39.953201,-75.19814,"Jon M. Huntsman Hall, 3730 Walnut St, Philadelphia, PA 19104",Jon M. Hunstman Hall,https://snworksceo.imgix.net/dpn/43892c92-64e3-4b55-9a6c-5106508d72f6.sized-1000x1000.jpg?w=1000,"The central spot for any Wharton snek, Huntsman is home to 48 classrooms, 57 GSRs, Pret, the MBA Cafe, and much more; key to all club meetings and late night study sessions. Closes at 2AM!"
+17,39.952846,-75.199312,"3803 Locust Walk, Philadelphia, PA 19104",Perry World House,https://cdn.vox-cdn.com/thumbor/oSkWAgxOcLqaZfK4uBOSY2DMEr0=/0x0:2364x1949/1200x800/filters:focal(830x943:1208x1321)/cdn.vox-cdn.com/uploads/chorus_image/image/53329181/perry_world_house_1100_architects_education_philadelphia_university_pennsylvania_usa_dezeen_2364_col_0.0.jpg,"Right next to the bridge, Perry World House is bright and spacious, hosting plenty of events centered around politics and world affairs."
+18,39.952491,-75.199372,"3800 LOCUST WALK, 1920 COMMONS BLDG, Philadelphia, PA 19104",Starbucks (Commons),http://bkp-ltd.com/wp-content/uploads/2014/10/01-UPENN-1920.jpg,"With lots of tables and chairs, Starbucks is underneath the Commons dining hall."
+19,39.95227,-75.199421,"Class of 1920 Commons, 3800 Locust Walk, Philadelphia, PA 19104",Amazon Center @ Commons,https://static1.squarespace.com/static/50a1b79ae4b081ffff7c9f82/t/57c0a8e11b631b0da5425862/1472244526762/,Has 3-4 tables and some couches for comfy work! Pick up your Amazon order while you're at it.
+20,39.953984,-75.200351,"3901 Walnut St, Philadelphia, PA 19104",Starbucks (39th),https://snworksceo.imgix.net/dpn-34s/7d127a3c-cc83-42d9-89d0-bce6ba2cb2a4.sized-1000x1000.jpg,"Right on Walnut Street, 39th Starbucks is a great place to grab a quick drink."
+21,39.954704,-75.199895,"3900 Chestnut St Unit 4, Philadelphia, PA 19104",Tea-Do,https://scontent-sea1-1.cdninstagram.com/vp/345bda5d0a0d33a7dc5696736b41f3c1/5DA9EE7C/t51.2885-15/e35/65668260_183465689332058_3853110028210680033_n.jpg?_nc_ht=scontent-sea1-1.cdninstagram.com&se=7&ig_cache_key=MjA3ODE2NDMwODY3NzkxNzc4Ng%3D%3D.2,"A popular boba store, Tea-Do has everything from asian snacks, fruit teas, to games!"
+22,39.954369,-75.203375,"4013 Walnut St, Philadelphia, PA 19104",Metropolitan Bakery & Cafe,https://www.universitycity.org/sites/default/files/styles/restaurant_image/public/Metropolitan_outside1.jpg?itok=0AWAEx4S,"Next to Frogro across from Cinemark, Metro is a hip fave. Space is on the smaller side."
+23,39.956314,-75.202219,"Ludlow St &, S 40th St, Philadelphia, PA 19104",Green Line Cafe,https://www.universitycity.org/sites/default/files/styles/restaurant_image/public/green_line_locust.jpg?itok=dA40AZRv,"A short get away from campus, Green Line is known for food and good vibes."
+24,39.95238,-75.200147,"3820 Locust Walk, Philadelphia, PA 19104",Harnwell College House,https://live.staticflickr.com/6229/6303325056_531126c7f9_b.jpg,"One of the most popular high rises, Harnwell has a dance gallery and the dungeon, along with lounges every floor!"
+25,39.952061,-75.201067,"3910 Irving St, Philadelphia, PA 19104",Harrison College House,https://www.pennconnects.upenn.edu/all_project_images/high_rises_college_houses_images/high_rises_college_houses_overview.jpg,"Another one of the three high rises, has Cafe Prima!"
+26,39.953162,-75.201334,"3901 Locust Walk, Philadelphia, PA 19104",Rodin College House,http://gramaticadesign.com/resources/Dorm_325.jpg,"Another one of the three high rises, home to 784 undergraduates."
+27,39.953707,-75.201024,"3900 Walnut St, Philadelphia, PA 19104",W.E.B Du Bois College House,https://images1.apartments.com/i2/o1pMFbmXDqqJIX1tFuqtBqyALVvwiF-RmsC5D4qvJEQ/117/webdu-bois-college-house-philadelphia-pa-primary-photo.jpg,Du Bois strives to adhere to its original mission to support students of the African Diaspora by serving as a hub for activities that promote African and African American scholarship and culture. 
+28,39.951559,-75.200102,"3817 Spruce St, Philadelphia, PA 19104",Mayer Stouffer College House,http://rolike.club/wp-content/uploads/2019/04/new-college-house-upenn-harnwell-college-house-upenn.jpg,"The all upperclassmen counterpart to Stouffer Stouffer, Mayer boasts a tightly knit student group along with large room layouts."
+29,39.951863,-75.202404,"3909 Spruce St, Philadelphia, PA 19104",Gregory College House,https://www.collegehouses.upenn.edu/sites/www.collegehouses.upenn.edu/files/Gregory_Front.jpg,Gregory celebrates diversity through its Modern Languages Program and cinema through the Film Culture series.
+30,39.950859,-75.198088,"3702 Spruce St, Philadelphia, PA 19104",Platt Student Peforming Arts House,https://www.vpul.upenn.edu/platthouse/files/DSC_6182_1000px_wide_resize.jpg,"The central hub to all performing arts groups at Penn, Platt hosts amazing food and craft filled study breaks and events. There are plenty of music and dance studios, along with a free Keurig and tea."
+31,39.951088,-75.198748,"3736 Spruce St, Philadelphia, PA 19104",SoBol University City,https://www.phillymag.com/wp-content/uploads/sites/3/2018/08/sobol-university-city.jpg,Get an Acai bowl or smoothie with fresh fruit and toppings!
+32,39.950422,-75.19765,"The Quadrangle, Philadelphia, PA 19104",The Quad,https://media.thetab.com/blogs.dir/93/files/2016/08/upper-quad-1024x768.jpg,"Consists of 3 college houses, 39 individual houses, and a dining hall; holds a vast majority of the freshman on campus."
+33,39.953705,-75.191296,"3335 Woodland Walk, Philadelphia, PA 19104",New College House,https://new.house.upenn.edu/sites/new.house.upenn.edu/files/styles/banner-big/public/banners/heyman-courtyard-banner.png?itok=9BZlJrNv,"Newly built in 2016, NCH is a 4 year house including a dining hall, music practice rooms, a media room, and tons of modern and beautiful amenities. Rooms are suite style."
+34,39.95414,-75.193461,"3400 Chestnut St, Philadelphia, PA 19104",Biddle Law Library,https://live.staticflickr.com/5249/5204747028_a420b5d2c9_b.jpg,A hidden spot inside the law school next to KCECH; super quiet and spacious for deep concentration.
+35,39.954225,-75.194156,"3465 Sansom St, Philadelphia, PA 19104",Kings Court English House,https://kcech.house.upenn.edu/sites/kcech.house.upenn.edu/files/styles/banner-big/public/banners/facade-kcech.jpg?itok=3yGgtIYl,"A freshman dorm with a dining hall, library, and study spaces."
+36,39.954033,-75.194827,"118 S 36th St, Philadelphia, PA 19104",Institute of Comtemporary Art,https://assets.visitphilly.com/wp-content/uploads/2018/02/Institute-of-Contemporary-Art-Exterior-J.Fuco-VP-2200x1237.jpg,"Penn's free modern art museum, boasting new exhibitions every month and event popups. Don't pass up this great museum!"
+37,39.952984,-75.203041,"4000 Locust St, Philadelphia, PA 19104",Saxbys  ,https://pbs.twimg.com/media/CTXdZK_UkAAm6tX.jpg,A classic spot near high rises for coffee and seating.
