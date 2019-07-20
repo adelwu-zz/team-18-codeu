@@ -101,14 +101,7 @@ header li a {
 
 div.card {
     margin-top: 20px;
-}
-
-div.card-header {
-    background-color: #efe0d9;
-}
-
-div.card-footer {
-    background-color: #f9f1ed;
+    margin-right: 20px;
 }
 
 div.card a {
@@ -160,3 +153,10 @@ img.hubImg {
     background-color: #754734;
     border-color: #754734;
 }
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: auto;
+}
+
