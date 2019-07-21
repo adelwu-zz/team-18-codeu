@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="/css/user-page.css">
     <script src="/js/hub-page-loader.js"></script>
     <script src="/js/navigation-loader.js"></script>
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
     <script>
     </script>
@@ -31,17 +30,19 @@
     <div id="hub-info-container">
       <table>
         <tr>
-          <td>id</td>
-          <td><span id="hub-id"></span></td>
-        </tr>
-        <tr>
-          <td style="padding-right: 15px">address</td>
-          <td><span id="hub-address"></span></td>
+          <td>
+            <img id="hub-image" class="hubImg card-img-top" src="" alt="Image of space" style="height:200px;width:200px" />
+          </td>
+          <td style="vertical-align: top; padding: 20px;">
+            <p><span id="hub-description"></span></p>
+            <p><span id="hub-address"></span></p>
+            <p><span id="hub-average-rating"></span></p>
+          </td>
         </tr>
       </table>
     </div>
     <br>
-    
+
     <h3> Review History </h3>
     <div id="review-container">Loading...</div>
     </div>
