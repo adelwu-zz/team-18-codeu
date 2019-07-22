@@ -87,12 +87,12 @@
     bodyDiv.appendChild(description);
 
     //button - read reviews
-    const reviewButton = document.createElement('input');
-    reviewButton.setAttribute("onclick", "window.location.replace('/hub.html?hubId=" + hub.id + "')");
-    reviewButton.setAttribute("type", "button");
+    const reviewButton = document.createElement('a');
+    reviewButton.setAttribute("href", "/hub.html?hubId=" + hub.id);
+    reviewButton.setAttribute("role", "button");
     reviewButton.classList.add('btn');
     reviewButton.classList.add('btn-secondary');
-    reviewButton.setAttribute("value", "Read Reviews");
+    reviewButton.appendChild(document.createTextNode("Read Reviews"));
     bodyDiv.appendChild(reviewButton);
 
     // overall card
