@@ -44,7 +44,7 @@ function fetchHubReviews() {
       sum += parseInt(review.rating, 10);
     });
     document.getElementById('hub-average-rating').appendChild(document.createTextNode(
-      'Average rating: ' + (sum / reviews.length).toFixed(1) + ' stars'));
+       (sum / reviews.length).toFixed(1) + ' stars'));
   });
 }
 

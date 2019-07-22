@@ -159,3 +159,20 @@ img.hubImg {
     grid-auto-rows: auto;
 }
 
+.card-header {
+    background-color: #efe0d9;
+}
+
+.hub-stuff1 {
+    margin-bottom: 0;
+    color: grey;
+}
+
+.hub-stuff2 {
+    margin-top: 0;
+}
+
+#hub-info-container {
+    padding-left: 20px;
+}
+
