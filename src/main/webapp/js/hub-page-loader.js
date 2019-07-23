@@ -34,7 +34,6 @@ function fetchHubReviews() {
     const reviewsContainer = document.getElementById('review-container');
     if (reviews.length == 0) {
       reviewsContainer.innerHTML = '<p>This hub has no reviews yet.</p>';
-      return;
     } else {
       reviewsContainer.innerHTML = '';
     }
@@ -43,8 +42,15 @@ function fetchHubReviews() {
       reviewsContainer.appendChild(buildReviewsDiv(review));
       sum += parseInt(review.rating, 10);
     });
+    var outputRating = '';
+    if(reviews.length > 0){
+      outputRating = (sum/reviews.length).toFixed(1) + ' stars';
+    }
+    else{
+      outputRating = 'N/A';
+    }
     document.getElementById('hub-average-rating').appendChild(document.createTextNode(
-       (sum / reviews.length).toFixed(1) + ' stars'));
+       outputRating));
   });
 }
 
