@@ -34,7 +34,6 @@ function fetchHubReviews() {
     const reviewsContainer = document.getElementById('review-container');
     if (reviews.length == 0) {
       reviewsContainer.innerHTML = '<p>This hub has no reviews yet.</p>';
-      return;
     } else {
       reviewsContainer.innerHTML = '';
     }
