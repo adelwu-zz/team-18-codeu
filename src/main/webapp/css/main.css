@@ -103,7 +103,12 @@ div.card {
     margin: 10px;
 }
 
-div.card a {
+div.card .card-header a {
+    color: #754734;
+    text-decoration: underline;
+}
+
+div.card .card-footer a {
     color: #754734;
     text-decoration: underline;
 }
