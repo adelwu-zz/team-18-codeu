@@ -63,18 +63,13 @@ public class ReviewServlet extends HttpServlet {
     response.setContentType("application/json");
 
     String user = request.getParameter("user");
-    String hubId = request.getParameter("hubId");
-
-    List<Review> reviews;
-    if (user != null && !user.isEmpty()) {
-      reviews = datastore.getReviews(user, null);
-    } else if (hubId != null && !hubId.isEmpty()) {
-      reviews = datastore.getReviews(null, UUID.fromString(hubId));
-    } else {
-      // Request is invalid, return empty array
-      response.getWriter().println("[]");
-      return;
+    String hubIdString = request.getParameter("hubId");
+    UUID hubId = null;
+    if (hubIdString != null && !hubIdString.isEmpty()) {
+      hubId = UUID.fromString(hubIdString);
     }
+
+    List<Review> reviews = datastore.getReviews(user, hubId);
 
     List<Review> transformedReviews = new ArrayList<>();
     for (Review review : reviews) {
