@@ -27,7 +27,6 @@
        hubContainer.innerHTML = '';
       }
       hubs.forEach((hub) => {
-    //   var avg = getReviewAverage(hub.id);
        const hubDiv = buildHubDiv(hub);
        hubContainer.appendChild(hubDiv);
        addLandmark(map, hub.gpsLat, hub.gpsLong, hub.name, hub.address, hub.id);
@@ -41,15 +40,12 @@
       return response.json();
     }).then((reviews) => {
       var sum = 0;
-      var counter = 0;
       reviews.forEach((review) => {
-        var rating = parseInt(review.rating, 10);
-        sum = sum + rating;
-        counter = counter + 1;
+        sum += parseInt(review.rating, 10);
       })
-      if(counter > 0){
-        var header = ' - ' + (sum/counter).toFixed(1) + ' stars';
-        node.appendChild(document.createTextNode(header));
+      if (reviews.length > 0) {
+        node.appendChild(document.createTextNode(
+          'Average rating: ' + (sum / reviews.length).toFixed(1) + ' stars.'));
       }
     });
   }
@@ -68,13 +64,6 @@
     const bodyDiv = document.createElement('div');
     bodyDiv.classList.add('card-body');
 
-    /*const avgNode = document.createElement('span');
-    getReviewAverage(hub.id, avgNode);
-
-    hubNameNode.appendChild(document.createTextNode(hub.name));
-    hubNameDiv.appendChild(hubNameNode);
-    hubNameDiv.appendChild(avgNode); */
-
     const hubNameDiv = document.createElement('h5');
     hubNameDiv.classList.add('card-title');
     hubNameDiv.appendChild(document.createTextNode(hub.name));
@@ -86,6 +75,12 @@
     description.appendChild(document.createTextNode(hub.desc));
     bodyDiv.appendChild(description);
 
+    const avgNode = document.createElement('p');
+    avgNode.classList.add('card-text');
+    avgNode.setAttribute("style", "color:grey;")
+    getReviewAverage(hub.id, avgNode);
+    bodyDiv.appendChild(avgNode);
+    
     //button - read reviews
     const reviewButton = document.createElement('a');
     reviewButton.setAttribute("href", "/hub.html?hubId=" + hub.id);
