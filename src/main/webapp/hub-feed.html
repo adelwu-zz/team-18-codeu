@@ -27,7 +27,6 @@
        hubContainer.innerHTML = '';
       }
       hubs.forEach((hub) => {
-    //   var avg = getReviewAverage(hub.id);
        const hubDiv = buildHubDiv(hub);
        hubContainer.appendChild(hubDiv);
        addLandmark(map, hub.gpsLat, hub.gpsLong, hub.name, hub.address, hub.id);
@@ -41,15 +40,12 @@
       return response.json();
     }).then((reviews) => {
       var sum = 0;
-      var counter = 0;
       reviews.forEach((review) => {
-        var rating = parseInt(review.rating, 10);
-        sum = sum + rating;
-        counter = counter + 1;
+        sum += parseInt(review.rating, 10);
       })
-      if(counter > 0){
-        var header = 'Average rating: ' + (sum/counter).toFixed(1) + ' stars.';
-        node.appendChild(document.createTextNode(header));
+      if (reviews.length > 0) {
+        node.appendChild(document.createTextNode(
+          'Average rating: ' + (sum / reviews.length).toFixed(1) + ' stars.'));
       }
     });
   }
