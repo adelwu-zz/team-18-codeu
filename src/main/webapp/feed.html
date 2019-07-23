@@ -10,8 +10,8 @@
 <script>
 
   // Fetch reviews and add them to the page.
-  function fetchReviews(){
-    const url = '/feed';
+  function fetchReviews() {
+    const url = '/reviews';
     fetch(url).then((response) => {
       return response.json();
     }).then((reviews) => {
