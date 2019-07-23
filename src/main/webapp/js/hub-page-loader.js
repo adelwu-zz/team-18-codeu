@@ -43,8 +43,15 @@ function fetchHubReviews() {
       reviewsContainer.appendChild(buildReviewsDiv(review));
       sum += parseInt(review.rating, 10);
     });
+    var outputRating = '';
+    if(reviews.length > 0){
+      outputRating = (sum/reviews.length).toFixed(1) + ' stars';
+    }
+    else{
+      outputRating = 'N/A';
+    }
     document.getElementById('hub-average-rating').appendChild(document.createTextNode(
-       (sum / reviews.length).toFixed(1) + ' stars'));
+       outputRating));
   });
 }
 
