@@ -48,7 +48,7 @@
         counter = counter + 1;
       })
       if(counter > 0){
-        var header = ' - ' + (sum/counter).toFixed(1) + ' stars';
+        var header = 'Average rating: ' + (sum/counter).toFixed(1) + ' stars.';
         node.appendChild(document.createTextNode(header));
       }
     });
@@ -68,13 +68,6 @@
     const bodyDiv = document.createElement('div');
     bodyDiv.classList.add('card-body');
 
-    /*const avgNode = document.createElement('span');
-    getReviewAverage(hub.id, avgNode);
-
-    hubNameNode.appendChild(document.createTextNode(hub.name));
-    hubNameDiv.appendChild(hubNameNode);
-    hubNameDiv.appendChild(avgNode); */
-
     const hubNameDiv = document.createElement('h5');
     hubNameDiv.classList.add('card-title');
     hubNameDiv.appendChild(document.createTextNode(hub.name));
@@ -86,6 +79,12 @@
     description.appendChild(document.createTextNode(hub.desc));
     bodyDiv.appendChild(description);
 
+    const avgNode = document.createElement('p');
+    avgNode.classList.add('card-text');
+    avgNode.setAttribute("style", "color:grey;")
+    getReviewAverage(hub.id, avgNode);
+    bodyDiv.appendChild(avgNode);
+    
     //button - read reviews
     const reviewButton = document.createElement('a');
     reviewButton.setAttribute("href", "/hub.html?hubId=" + hub.id);
